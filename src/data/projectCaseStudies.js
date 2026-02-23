@@ -84,6 +84,8 @@ const projectCaseStudies = [
   buildCaseStudy({
     slug: 'ai-chatbot-fastapi',
     decorative: 'neural-grid',
+    githubUrl: 'https://github.com/deathnote21306/rag-backend-fastapi',
+    demoUrl: 'http://localhost:8000',
     heroParagraph:
       'This system is engineered as a retrieval-first assistant for high-signal answers in domain-specific corpora. The API orchestrates document chunking, embedding search, context assembly, and guarded generation so responses stay grounded instead of generic. The architecture focuses on low-latency retrieval, deterministic processing stages, and debuggable inference traces, making it a technically strong foundation for production-facing support and internal knowledge operations.',
     problem: {
