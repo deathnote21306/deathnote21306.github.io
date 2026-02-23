@@ -23,6 +23,13 @@
   }
 }
 
+body.about-route {
+  .logo3d-portal,
+  .logo3d-fallback {
+    display: none !important;
+  }
+}
+
 .about-lead {
   margin: 0 0 1.2rem;
   color: rgba(224, 255, 240, 0.92);

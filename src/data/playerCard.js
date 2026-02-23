@@ -23,7 +23,6 @@ const playerCard = {
     { label: "Driver's License", value: 'Yes' },
     { label: 'Eye Color', value: 'Brown' },
     { label: 'Class/Build', value: 'B1RD-V2' },
-    { label: 'Race', value: 'Human (mostly), Debugger by night' },
   ],
 }
 

@@ -20,6 +20,13 @@ const About = () =>  {
         return () => clearTimeout(timer);
       }, []);
 
+    useEffect(() => {
+        document.body.classList.add('about-route')
+        return () => {
+            document.body.classList.remove('about-route')
+        }
+    }, [])
+
     return (
         <>
             <div className="container about-page">
