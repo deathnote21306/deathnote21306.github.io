@@ -1,0 +1,44 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" fill="#000000"/>
+
+  <text x="800" y="90" fill="#E9FFF4" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700" text-anchor="middle">
+    Linear Regression - Best Fit Line
+  </text>
+
+  <line x1="220" y1="840" x2="1400" y2="840" stroke="#9FB8AD" stroke-width="3"/>
+  <line x1="220" y1="840" x2="220" y2="170" stroke="#9FB8AD" stroke-width="3"/>
+
+  <text x="810" y="900" fill="#D7E8E0" font-family="Arial, Helvetica, sans-serif" font-size="30" text-anchor="middle">
+    Feature
+  </text>
+  <text x="110" y="510" fill="#D7E8E0" font-family="Arial, Helvetica, sans-serif" font-size="30" text-anchor="middle" transform="rotate(-90 110 510)">
+    Target
+  </text>
+
+  <line x1="290" y1="760" x2="1330" y2="300" stroke="#00FFA3" stroke-width="6" stroke-linecap="round"/>
+
+  <g fill="#6AE9FF">
+    <circle cx="300" cy="720" r="10"/>
+    <circle cx="380" cy="705" r="10"/>
+    <circle cx="470" cy="665" r="10"/>
+    <circle cx="560" cy="645" r="10"/>
+    <circle cx="640" cy="603" r="10"/>
+    <circle cx="730" cy="580" r="10"/>
+    <circle cx="810" cy="542" r="10"/>
+    <circle cx="900" cy="512" r="10"/>
+    <circle cx="990" cy="470" r="10"/>
+    <circle cx="1070" cy="445" r="10"/>
+    <circle cx="1160" cy="405" r="10"/>
+    <circle cx="1245" cy="385" r="10"/>
+    <circle cx="1320" cy="332" r="10"/>
+  </g>
+
+  <g stroke="#FFFFFF" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="8 8">
+    <line x1="380" y1="705" x2="380" y2="720"/>
+    <line x1="560" y1="645" x2="560" y2="640"/>
+    <line x1="730" y1="580" x2="730" y2="565"/>
+    <line x1="900" y1="512" x2="900" y2="490"/>
+    <line x1="1070" y1="445" x2="1070" y2="415"/>
+    <line x1="1245" y1="385" x2="1245" y2="335"/>
+  </g>
+</svg>

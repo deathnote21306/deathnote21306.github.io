@@ -1,0 +1,352 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-page {
+  position: relative;
+  display: block;
+  min-height: 100vh;
+  overflow: visible;
+  padding: 0 7% 6rem;
+  box-sizing: border-box;
+}
+
+.home-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  min-height: 100vh;
+
+  .text-zone {
+    position: relative;
+    width: 40%;
+    max-height: none;
+    z-index: 2;
+  }
+
+  .logo3d-canvas-wrapper {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    flex-shrink: 0;
+    margin-left: auto;
+    pointer-events: none;
+
+    canvas {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+    } 
+  }
+
+  h1 {
+    color: #fff;
+    font-size: clamp(5.8rem, 8.8vw, 9.2rem);
+    line-height: 0.98;
+    margin: 0;
+    font-family: "ByteBounce";
+    font-weight: 400;
+
+    img {
+      width: 32px;
+      margin-left: 20px;
+      opacity: 0;
+      height: auto;
+      animation: rotateIn 1s linear both;
+      animation-delay: 1.4s;
+    }
+  }
+
+  .morph-word {
+    position: relative;
+    display: inline-block;
+    min-width: 11ch;
+    height: 1em;
+    line-height: inherit;
+    vertical-align: baseline;
+    transform-origin: center;
+  }
+
+  .morph-word-wrap {
+    --morph-baseline-shift: 0.06em;
+    display: inline-flex;
+    align-items: baseline;
+    vertical-align: baseline;
+    line-height: inherit;
+    margin-left: 0.02em;
+    transform: translateY(var(--morph-baseline-shift));
+  }
+
+  .morph-word__layer {
+    position: absolute;
+    inset: 0;
+    white-space: nowrap;
+    line-height: inherit;
+    color: #d9ffea;
+    text-shadow: 0 0 14px rgba(0, 184, 92, 0.28);
+    transform-origin: 50% 82%;
+    transition: opacity 0.62s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.62s cubic-bezier(0.2, 0.7, 0.2, 1), filter 0.62s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .morph-word__current {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    filter: blur(0);
+  }
+
+  .morph-word__next {
+    opacity: 0;
+    transform: translateY(-14%) scaleY(1.18);
+    filter: blur(4px);
+  }
+
+  .morph-word.is-morphing .morph-word__current {
+    opacity: 0;
+    transform: translateY(14%) scaleY(0.72) skewX(-4deg);
+    filter: blur(4px);
+  }
+
+  .morph-word.is-morphing .morph-word__next {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+    filter: blur(0);
+  }
+
+  h2 {
+    color: #8d8d8d;
+    font-size: clamp(1.3rem, 1.8vw, 1.5rem);
+    font-family: "Coolvetica";
+    font-weight: 400;
+    margin-top: 20px;
+    letter-spacing: 3px;
+    opacity: 0;
+    animation: fadeInUp 1s 3.2s forwards;
+  }
+
+  .flat-button {
+    margin-top: 25px;
+    opacity: 0;
+    animation: fadeInUp 1s 3.6s forwards;
+  }
+}
+
+.player-card-stage {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+  gap: 2rem 2.4rem;
+  align-items: start;
+  padding-top: 2.8rem;
+}
+
+.player-card-stage__content {
+  min-width: 0;
+}
+
+.cv-snapshot-stage {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+  gap: 2rem 2.4rem;
+  align-items: start;
+  padding-top: 2.8rem;
+}
+
+.cv-snapshot-stage__content {
+  min-width: 0;
+}
+
+.projects-showcase {
+  display: grid;
+  grid-template-columns: minmax(170px, 240px) minmax(0, 1fr);
+  gap: 2rem 2.4rem;
+  align-items: start;
+  padding: 3rem 0 1rem;
+}
+
+.projects-showcase__label,
+.cv-snapshot-stage__label {
+  margin: 0;
+  color: #e5fff2;
+  font-size: clamp(4rem, 8vw, 7.2rem);
+  line-height: 0.95;
+  letter-spacing: 0.06rem;
+  font-family: "ByteBounce";
+  font-weight: 400;
+  text-shadow: 0 0 18px rgba(0, 184, 92, 0.28);
+}
+
+.projects-showcase__content {
+  min-width: 0;
+}
+
+.player-card {
+  max-width: 980px;
+  width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+  .home-page {
+    padding: 0 6% 5rem;
+  }
+
+  .home-hero {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    padding: 8rem 0 3rem;
+    position: relative;
+
+    .text-zone {
+      width: 100%;
+      max-width: 680px;
+      text-align: center;
+    }
+
+    .logo3d-canvas-wrapper {
+      width: 0;
+      min-height: 0;
+      margin-left: 0;
+    }
+  }
+
+  .projects-showcase {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .player-card-stage {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .cv-snapshot-stage {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-top: 2.1rem;
+  }
+
+  .player-card-stage__spacer {
+    display: none;
+  }
+
+  .cv-snapshot-stage__spacer {
+    display: none;
+  }
+
+  .projects-showcase__label,
+  .cv-snapshot-stage__label {
+    font-size: clamp(3.6rem, 9vw, 5rem);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home-page {
+    padding: 0 5% 3.5rem;
+  }
+
+  .home-hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding: 6rem 0 2rem;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+      font-size: clamp(3.7rem, 13vw, 5.1rem);
+      line-height: 1.03;
+      word-break: keep-all;
+    }
+
+    h2 {
+      margin-top: 16px;
+      letter-spacing: 1.3px;
+      line-height: 1.45;
+      font-size: clamp(1.25rem, 3.8vw, 1.42rem);
+    }
+
+    .flat-button {
+      margin-top: 18px;
+    }
+
+    .morph-word {
+      min-width: clamp(7.2ch, 45vw, 9.8ch);
+    }
+
+    .morph-word-wrap {
+      --morph-baseline-shift: 0.1em;
+      justify-content: center;
+    }
+  }
+
+  .player-card-stage {
+    padding-top: 2rem;
+  }
+
+  .cv-snapshot-stage {
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .home-page {
+    padding: 0 1.6rem 2.6rem;
+  }
+
+  .home-hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    padding-top: 5.6rem;
+    padding-bottom: 1.8rem;
+
+    h1 {
+      font-size: clamp(3.1rem, 12.5vw, 4.1rem);
+      line-height: 1.04;
+    }
+
+    .morph-word {
+      min-width: 7.4ch;
+    }
+
+    .morph-word-wrap {
+      --morph-baseline-shift: 0.12em;
+    }
+  }
+
+  .projects-showcase {
+    gap: 0.9rem;
+  }
+}
+
+/* The 3D logo is rendered via portal; on mobile it becomes a subtle background layer. */
+@media screen and (max-width: 768px) {
+  .logo3d-portal {
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    opacity: 0.2;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero {
+    .morph-word__layer {
+      transition: opacity 0.18s linear;
+      filter: none !important;
+      transform: none !important;
+    }
+  }
+}

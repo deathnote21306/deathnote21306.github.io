@@ -1,0 +1,166 @@
+$primary-color: #00b85c;
+
+@import "animate.css";
+@import '~loaders.css/src/animations/pacman.scss';
+
+@font-face {
+  font-family: "Helvetica Neue";
+  src: url('./assets/fonts/helvetica-neu.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "ByteBounce";
+  src: url('./assets/fonts/ByteBounce.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "HackbotFreeTrial";
+  src: url('./assets/fonts/HackbotFreeTrial.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "La Belle Aurore";
+  src: url('./assets/fonts/LaBelleAurore.woff2') format("woff2");
+}
+
+@font-face {
+  font-family: "Coolvetica";
+  src: url('./assets/fonts/CoolveticaRg-Regular.woff2') format("woff2");
+}
+
+body {
+  background: linear-gradient(135deg, #000000 0%, #001a0d 60%, #0a2e14 100%);
+  min-height: 100vh;
+}
+
+.loader-active {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  animation: fadeOut 1s 1s;
+  animation-fill-mode: forwards;
+}
+
+
+input,
+textarea {
+  font-family: "Helvetica Neue";
+}
+
+.neon-glitch-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.95rem 1.8rem;
+  border: 1px solid #00b85c;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(3, 25, 15, 0.95), rgba(1, 16, 10, 0.95));
+  color: #b4ffd9;
+  font-size: 1.45rem;
+  letter-spacing: 0.2rem;
+  font-family: "Coolvetica", "Helvetica Neue", sans-serif;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow: 0 0 0 1px rgba(0, 184, 92, 0.35) inset, 0 0 22px rgba(0, 184, 92, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    border-radius: inherit;
+    opacity: 0.5;
+    pointer-events: none;
+    transform: translate(0);
+    z-index: 0;
+  }
+
+  &::before {
+    inset: -2px;
+    border: 1px solid rgba(0, 255, 170, 0.9);
+    box-shadow:
+  0 0 22px rgba(0, 255, 170, 0.7),
+  0 0 40px rgba(0, 255, 170, 0.4),
+  inset 0 0 14px rgba(0, 255, 170, 0.35);clip-path: inset(0 0 0 0);
+    animation: btn-shell-glitch 1.8s infinite steps(3, end);
+  }
+
+  &::after {
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        180deg,
+        rgba(0, 255, 170, 0.1) 0 1px,
+        rgba(0, 0, 0, 0) 1px 3px
+      ),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.12), rgba(255, 61, 197, 0.08), rgba(0, 255, 170, 0.12));
+    mix-blend-mode: screen;
+    clip-path: inset(6% 0 76% 0);
+    animation: btn-shell-scan 1.6s infinite linear;
+  }
+
+  &:hover,
+  &:focus-visible {
+    color: #e7fff3;
+    border-color: #37ff95;
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(55, 255, 149, 0.6) inset, 0 0 28px rgba(0, 184, 92, 0.45);
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus-visible::before,
+  &:focus-visible::after {
+    opacity: 0.78;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #7fffc0;
+    outline-offset: 3px;
+  }
+}
+
+.neon-glitch-btn > span {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes btn-shell-glitch {
+  0%, 84%, 100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  86% { transform: translate(-1px, 0); clip-path: inset(56% 0 16% 0); }
+  88% { transform: translate(2px, -1px); clip-path: inset(14% 0 58% 0); }
+  90% { transform: translate(-1px, 1px); clip-path: inset(78% 0 6% 0); }
+  92% { transform: translate(1px, 0); clip-path: inset(0 0 0 0); }
+}
+
+@keyframes btn-shell-scan {
+  0% { transform: translateY(-60%); clip-path: inset(0 0 92% 0); }
+  40% { transform: translateY(10%); clip-path: inset(30% 0 50% 0); }
+  72% { transform: translateY(35%); clip-path: inset(70% 0 10% 0); }
+  100% { transform: translateY(60%); clip-path: inset(92% 0 0 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neon-glitch-btn {
+    transition: none;
+  }
+
+  .neon-glitch-btn::before,
+  .neon-glitch-btn::after {
+    animation: none;
+    opacity: 0.3;
+  }
+}

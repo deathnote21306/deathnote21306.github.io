@@ -1,0 +1,252 @@
+.about-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 6.5rem 7% 4rem 8%;
+  box-sizing: border-box;
+
+  .text-zone.about-story {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: min(62%, 860px);
+    max-height: none;
+    z-index: 2;
+
+    h1 {
+      left: 0;
+      margin-bottom: 1.8rem;
+      font-size: clamp(5rem, 6.8vw, 7.4rem);
+    }
+  }
+}
+
+.about-lead {
+  margin: 0 0 1.2rem;
+  color: rgba(224, 255, 240, 0.92);
+  font-size: 1.8rem;
+  line-height: 1.58;
+  max-width: 86%;
+  font-family: "HackbotFreeTrial";
+}
+
+.about-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.3rem;
+
+  span {
+    border: 1px solid rgba(0, 184, 92, 0.34);
+    border-radius: 999px;
+    padding: 0.45rem 0.85rem;
+    font-size: 1.16rem;
+    color: rgba(211, 255, 234, 0.96);
+    letter-spacing: 0.03rem;
+    background: rgba(4, 20, 13, 0.3);
+  }
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.about-card {
+  border: 1px solid rgba(121, 255, 189, 0.22);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  background: rgba(4, 16, 12, 0.17);
+  backdrop-filter: blur(2px);
+
+  h3 {
+    margin: 0 0 0.55rem;
+    color: #cdfde5;
+    font-size: 1.55rem;
+    font-family: "Coolvetica";
+    font-weight: 400;
+    letter-spacing: 0.08rem;
+  }
+
+  p {
+    margin: 0;
+    color: rgba(222, 255, 239, 0.9);
+    font-size: 1.23rem;
+    line-height: 1.52;
+    min-width: 0;
+    font-family: "HackbotFreeTrial";
+    opacity: 1;
+    animation: none;
+  }
+
+  &:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+.stage-cube-cont {
+  width: 38%;
+  height: 100%;
+  top: 0;
+  padding-top: 10%;
+  margin-left: 0;
+  position: absolute;
+  right: 2%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.cubespinner {
+  animation-name: spincube;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 12s;
+  transform-style: preserve-3d;
+  transform-origin: 100px 100px 0;
+  margin-left: calc(50% - 120px);
+
+  div {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.26);
+    text-align: center;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(182, 255, 224, 0.34);
+  }
+
+  .face1 {
+    transform: translateZ(100px);
+    color: #dd0031;
+  }
+  .face2 {
+    transform: rotateY(90deg) translateZ(100px);
+    color: #f06529;
+  }
+  .face3 {
+    transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
+    color: #28a4d9;
+  }
+  .face4 {
+    transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
+    color: #5ed4f4;
+  }
+  .face5 {
+    transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
+    color: #efd81d;
+  }
+  .face6 {
+    transform: rotateX(-90deg) translateZ(100px);
+    color: #ec4d28;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-page {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7rem 6% 2.8rem;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    .text-zone {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 620px);
+      text-align: center;
+
+      h1 {
+        left: 0;
+        margin-bottom: 1.35rem;
+        font-size: clamp(4.2rem, 12vw, 5.4rem);
+      }
+
+      p {
+        min-width: 0;
+        font-size: clamp(1.35rem, 3.9vw, 1.62rem);
+        line-height: 1.55;
+      }
+    }
+  }
+
+  .about-lead {
+    max-width: 100%;
+  }
+
+  .about-tags {
+    justify-content: center;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .about-card:last-child {
+    grid-column: auto;
+  }
+
+  .stage-cube-cont {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+    right: auto;
+    top: 0;
+    padding-top: 0;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    opacity: 0.27;
+    z-index: 1;
+  }
+
+  .cubespinner {
+    margin-left: 0;
+    transform-origin: 100px 100px 0;
+    transform: scale(0.72);
+
+    div {
+      background: rgba(255, 255, 255, 0.28);
+      box-shadow: 0 0 18px rgba(188, 255, 225, 0.36);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-card {
+    backdrop-filter: none;
+  }
+}
+
+@keyframes spincube {
+  from,
+  to {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  16% {
+    transform: rotateY(-90deg) rotateZ(90deg);
+  }
+  33% {
+    transform: rotateY(-90deg) rotateX(90deg);
+  }
+  50% {
+    transform: rotateY(-180deg) rotateZ(90deg);
+  }
+  66% {
+    transform: rotateY(-270deg) rotateX(90deg);
+  }
+  83% {
+    transform: rotateX(90deg);
+  }
+}

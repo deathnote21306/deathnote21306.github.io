@@ -1,0 +1,232 @@
+.cv-snapshot {
+  position: relative;
+}
+
+.cv-snapshot__kicker {
+  margin: 0 0 1rem;
+  color: rgba(168, 245, 208, 0.86);
+  font-family: "Coolvetica";
+  font-size: 1.15rem;
+  letter-spacing: 0.14rem;
+  text-transform: uppercase;
+}
+
+.cv-snapshot__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+
+  span {
+    border: 1px solid rgba(0, 184, 92, 0.34);
+    border-radius: 999px;
+    padding: 0.45rem 0.9rem;
+    font-size: 1.2rem;
+    line-height: 1.35;
+    color: rgba(226, 255, 242, 0.95);
+    background: rgba(3, 19, 12, 0.35);
+    max-width: 100%;
+  }
+}
+
+.cv-snapshot__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.95fr;
+  gap: 1rem;
+}
+
+.cv-snapshot__block {
+  border: 1px solid rgba(120, 255, 188, 0.24);
+  border-radius: 14px;
+  padding: 1rem;
+  background: rgba(4, 16, 12, 0.16);
+  backdrop-filter: blur(2px);
+
+  h4 {
+    margin: 0 0 0.8rem;
+    font-family: "Coolvetica";
+    font-size: 1.55rem;
+    letter-spacing: 0.08rem;
+    color: #c8ffe2;
+    font-weight: 400;
+  }
+}
+
+.cv-snapshot__timeline,
+.cv-snapshot__education,
+.cv-snapshot__awards {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-snapshot__timeline li {
+  padding: 0.65rem 0;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.18);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  p {
+    margin: 0.38rem 0 0;
+    font-size: 1.16rem;
+    line-height: 1.45;
+    color: rgba(232, 255, 243, 0.9);
+  }
+}
+
+.cv-snapshot__line-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.7rem;
+  align-items: flex-start;
+
+  strong {
+    color: #e9fff4;
+    font-size: 1.2rem;
+    line-height: 1.35;
+  }
+
+  span {
+    color: rgba(166, 236, 204, 0.84);
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+}
+
+.cv-snapshot__line-sub {
+  margin-top: 0.22rem;
+  color: rgba(166, 236, 204, 0.86);
+  font-size: 1.1rem;
+}
+
+.cv-snapshot__skills > div + div {
+  margin-top: 0.8rem;
+}
+
+.cv-snapshot__skills h5 {
+  margin: 0 0 0.4rem;
+  color: rgba(178, 255, 216, 0.9);
+  font-family: "Coolvetica";
+  font-size: 1.2rem;
+  letter-spacing: 0.09rem;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.cv-snapshot__skills ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+
+  li {
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(111, 255, 187, 0.28);
+    color: #dffff0;
+    background: rgba(5, 23, 14, 0.5);
+    font-size: 1.08rem;
+  }
+}
+
+.cv-snapshot__education li {
+  padding: 0.55rem 0;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.18);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0.3rem;
+  }
+
+  strong,
+  span,
+  em {
+    display: block;
+  }
+
+  strong {
+    color: #e9fff4;
+    font-size: 1.18rem;
+  }
+
+  span {
+    margin-top: 0.2rem;
+    color: rgba(219, 255, 237, 0.86);
+    font-size: 1.1rem;
+    line-height: 1.4;
+  }
+
+  em {
+    margin-top: 0.18rem;
+    color: rgba(154, 229, 195, 0.82);
+    font-size: 1.05rem;
+    font-style: normal;
+  }
+}
+
+.cv-snapshot__awards {
+  margin-top: 0.8rem;
+
+  li {
+    color: rgba(218, 255, 237, 0.9);
+    font-size: 1.08rem;
+    line-height: 1.45;
+    padding-left: 1rem;
+    position: relative;
+
+    &::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: rgba(125, 245, 192, 0.85);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .cv-snapshot__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cv-snapshot__block:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cv-snapshot__highlights {
+    margin-bottom: 1rem;
+
+    span {
+      width: 100%;
+      border-radius: 12px;
+    }
+  }
+
+  .cv-snapshot__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-snapshot__block:last-child {
+    grid-column: auto;
+  }
+
+  .cv-snapshot__line-head {
+    flex-direction: column;
+    gap: 0.15rem;
+
+    span {
+      white-space: normal;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cv-snapshot__block {
+    backdrop-filter: none;
+  }
+}

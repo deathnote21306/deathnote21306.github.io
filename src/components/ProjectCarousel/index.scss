@@ -1,0 +1,91 @@
+@import '../ProjectCard/index.scss';
+
+.project-carousel {
+  width: 100%;
+}
+
+.project-carousel__orbit {
+  position: relative;
+  height: 455px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  overflow: hidden;
+  touch-action: pan-y;
+  outline: none;
+  mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px rgba(130, 255, 193, 0.6);
+  }
+
+  .project-card {
+    left: 50%;
+    top: 50%;
+  }
+}
+
+.project-carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+
+  button {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 184, 92, 0.5);
+    color: #bfffdc;
+    font-size: 2rem;
+    line-height: 1;
+    background: rgba(2, 18, 11, 0.88);
+    box-shadow: 0 0 16px rgba(0, 184, 92, 0.18);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(120, 255, 188, 0.88);
+      box-shadow: 0 0 18px rgba(0, 184, 92, 0.32);
+    }
+
+    &:focus-visible {
+      outline: 2px solid #86ffc5;
+      outline-offset: 3px;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-card,
+  .project-carousel__controls button {
+    transition: none !important;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .project-carousel__orbit {
+    height: 420px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project-carousel__orbit {
+    height: 352px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .project-carousel__orbit {
+    height: 320px;
+    mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+
+  .project-carousel__controls {
+    margin-top: 12px;
+  }
+}

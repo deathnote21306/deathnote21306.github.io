@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss'
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './components/Home'
+import About from './components/About'
+import Contact from './components/Contact'  
+import ProjectDetail from './components/ProjectDetail'
+import CodeBackground from "./components/CodeBackground";
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [showBg, setShowBg] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowBg(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      {showBg && <CodeBackground />}
+
+      {/* Your actual content sits on top */}
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <Routes>
+          <Route path='/' element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="projects/:slug" element={<ProjectDetail />} />
+          </Route>
+        </Routes>
+      </div>
+    </>
+  )
 }
 
 export default App;

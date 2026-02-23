@@ -1,0 +1,37 @@
+.project-detail-page {
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  padding: 6rem 7%;
+  box-sizing: border-box;
+
+  .text-zone {
+    max-width: 760px;
+  }
+
+  h1 {
+    margin: 0 0 1.4rem;
+    font-size: 5.6rem;
+    color: #e9fff2;
+    font-family: "ByteBounce";
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0 0 2rem;
+    color: #b7c4bc;
+    font-size: 1.8rem;
+    line-height: 1.5;
+    font-family: "HackbotFreeTrial";
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .project-detail-page {
+    padding: 7rem 8% 4rem;
+
+    h1 {
+      font-size: 3.8rem;
+    }
+  }
+}
