@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./index.scss";
 import AnimatedLetters from "../AnimatedLetters";
 import { useEffect, useState } from "react";
-import Logo3D from "../Logo3D.jsx";
+import SafeLogo3D from "../SafeLogo3D";
 import { Loader } from "react-loaders";
 import ProjectCarousel from "../ProjectCarousel";
 import PlayerCard from "../PlayerCard";
@@ -65,7 +65,7 @@ const Home = () => {
               <span>Contact Me</span>
             </Link>
           </div>
-          <Logo3D />
+          <SafeLogo3D />
         </section>
 
         <section className="player-card-stage" aria-label="Player card">
