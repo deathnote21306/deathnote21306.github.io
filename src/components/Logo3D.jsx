@@ -1,10 +1,10 @@
-import { Suspense, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-function LogoModel() {
+function LogoModel({ onReady }) {
   const spin = useRef();
   const { scene } = useGLTF("/models/logo.gltf");
 
@@ -33,6 +33,10 @@ function LogoModel() {
     return c;
   }, [scene]);
 
+  useEffect(() => {
+    if (typeof onReady === "function") onReady();
+  }, [onReady, cloned]);
+
   useFrame((_, delta) => {
     if (spin.current) spin.current.rotation.y += delta * 0.6;
   });
@@ -46,7 +50,7 @@ function LogoModel() {
   );
 }
 
-export default function Logo3D() {
+export default function Logo3D({ onReady }) {
   // Render directly into document.body, completely outside
   // the .container div and all its broken stacking contexts
   return createPortal(
@@ -73,7 +77,7 @@ export default function Logo3D() {
         <directionalLight position={[2, 2, 2]} intensity={1.2} />
         <Suspense fallback={null}>
           <Environment preset="studio" />
-          <LogoModel />
+          <LogoModel onReady={onReady} />
         </Suspense>
       </Canvas>
     </div>,

@@ -42,23 +42,35 @@ const hasWebGLSupport = () => {
 export default function SafeLogo3D() {
   const [canRender3D, setCanRender3D] = useState(true)
   const [has3DError, setHas3DError] = useState(false)
+  const [is3DReady, setIs3DReady] = useState(false)
 
   useEffect(() => {
     setCanRender3D(hasWebGLSupport())
   }, [])
 
-  if (!canRender3D || has3DError) {
-    return createPortal(
-      <div className="logo3d-fallback" aria-hidden="true">
-        <img src={LogoS} alt="" />
-      </div>,
-      document.body
-    )
-  }
+  const showLoadingFallback = canRender3D && !has3DError && !is3DReady
+  const showStaticFallback = !canRender3D || has3DError
+
+  const fallbackLogo = (showLoadingFallback || showStaticFallback)
+    ? createPortal(
+        <div className="logo3d-fallback" aria-hidden="true">
+          <img src={LogoS} alt="" />
+          {showLoadingFallback ? (
+            <p className="logo3d-fallback__hint">3D logo loading here...</p>
+          ) : null}
+        </div>,
+        document.body
+      )
+    : null
+
+  if (!canRender3D || has3DError) return fallbackLogo
 
   return (
-    <Logo3DErrorBoundary onError={() => setHas3DError(true)}>
-      <Logo3D />
-    </Logo3DErrorBoundary>
+    <>
+      {fallbackLogo}
+      <Logo3DErrorBoundary onError={() => setHas3DError(true)}>
+        <Logo3D onReady={() => setIs3DReady(true)} />
+      </Logo3DErrorBoundary>
+    </>
   )
 }

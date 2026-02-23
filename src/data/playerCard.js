@@ -1,10 +1,19 @@
 const playerCard = {
-  title: 'Player Card',
-  subtitle: 'Builder Profile // Mk.01',
+  title: 'Williams Lendjoungou',
+  subtitle: 'Elite Build Profile',
   image: '/assets/images/player.jpg',
-  imageAlt: 'Player portrait placeholder',
+  imageAlt: 'Williams portrait',
+  rating: 96,
+  position: 'FS DEV',
+  stats: [
+    { label: 'BUILD', value: 97 },
+    { label: 'SHIP', value: 95 },
+    { label: 'DEBUG', value: 98 },
+    { label: 'DESIGN', value: 92 },
+    { label: 'SPEED', value: 94 },
+    { label: 'IQ', value: 99 },
+  ],
   attributes: [
-    { label: 'Name', value: 'Williams Lendjoungou' },
     { label: 'School', value: 'McGill University' },
     { label: 'From', value: 'Montreal, Canada' },
     { label: 'Languages', value: 'English, French' },

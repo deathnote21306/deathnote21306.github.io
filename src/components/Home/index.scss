@@ -339,13 +339,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.3;
+  opacity: 0.42;
 
   img {
     width: min(72%, 460px);
     max-height: 72vh;
     object-fit: contain;
     filter: drop-shadow(0 0 20px rgba(0, 184, 92, 0.3));
+  }
+
+  .logo3d-fallback__hint {
+    position: absolute;
+    bottom: 8.5rem;
+    right: 8%;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(0, 184, 92, 0.35);
+    border-radius: 6px;
+    background: rgba(3, 12, 8, 0.78);
+    color: #b7f9d4;
+    font-family: "HackbotFreeTrial", "Courier New", monospace;
+    font-size: 1.05rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 0 14px rgba(0, 184, 92, 0.2);
   }
 }
 
@@ -366,11 +383,20 @@
     right: 0;
     width: 100vw;
     height: 100vh;
-    opacity: 0.18;
+    opacity: 0.24;
 
     img {
       width: min(78%, 340px);
       max-height: 56vh;
+    }
+
+    .logo3d-fallback__hint {
+      right: 50%;
+      bottom: 6.4rem;
+      transform: translateX(50%);
+      font-size: 0.95rem;
+      padding: 0.55rem 0.8rem;
+      white-space: nowrap;
     }
   }
 }
