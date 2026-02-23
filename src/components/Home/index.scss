@@ -328,6 +328,27 @@
 }
 
 /* The 3D logo is rendered via portal; on mobile it becomes a subtle background layer. */
+.logo3d-fallback {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.3;
+
+  img {
+    width: min(72%, 460px);
+    max-height: 72vh;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0, 184, 92, 0.3));
+  }
+}
+
 @media screen and (max-width: 768px) {
   .logo3d-portal {
     left: 0 !important;
@@ -338,6 +359,19 @@
     opacity: 0.2;
     z-index: 0 !important;
     pointer-events: none !important;
+  }
+
+  .logo3d-fallback {
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.18;
+
+    img {
+      width: min(78%, 340px);
+      max-height: 56vh;
+    }
   }
 }
 
