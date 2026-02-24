@@ -37,6 +37,21 @@
           sessionStorage.removeItem('spa_redirect_path');
           window.history.replaceState(null, null, redirect);
         }
+
+        var url = new URL(window.location.href);
+        var keysToDrop = ['fbclid', 'igshid', 'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        var changed = false;
+        keysToDrop.forEach(function (k) {
+          if (url.searchParams.has(k)) {
+            url.searchParams.delete(k);
+            changed = true;
+          }
+        });
+
+        if (changed) {
+          var next = url.pathname + (url.searchParams.toString() ? '?' + url.searchParams.toString() : '') + url.hash;
+          window.history.replaceState(null, null, next);
+        }
       })();
     </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>

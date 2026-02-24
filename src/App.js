@@ -13,7 +13,10 @@ function App() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (prefersReducedMotion) {
+    const ua = navigator.userAgent || ''
+    const isInAppBrowser = /(Instagram|FBAN|FBAV|FB_IAB|Line|Snapchat|Twitter)/i.test(ua)
+
+    if (prefersReducedMotion || isInAppBrowser) {
       setShowBg(false)
       return undefined
     }
