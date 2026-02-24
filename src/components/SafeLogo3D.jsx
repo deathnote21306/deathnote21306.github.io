@@ -51,16 +51,36 @@ const isMobileOrLowPowerDevice = () => {
   return isMobileUA || isSmallViewport || lowCpu || lowMemory
 }
 
+const isInAppBrowser = () => {
+  if (typeof navigator === 'undefined') return false
+  return /(Instagram|FBAN|FBAV|FB_IAB|Line|Snapchat|Twitter)/i.test(navigator.userAgent || '')
+}
+
 export default function SafeLogo3D() {
   const [canRender3D, setCanRender3D] = useState(true)
   const [has3DError, setHas3DError] = useState(false)
   const [is3DReady, setIs3DReady] = useState(false)
+  const [isLiteMode, setIsLiteMode] = useState(false)
 
   useEffect(() => {
     const supports3D = hasWebGLSupport()
-    const shouldUseLightMode = isMobileOrLowPowerDevice()
-    setCanRender3D(supports3D && !shouldUseLightMode)
+    const shouldUseLightMode = isMobileOrLowPowerDevice() || isInAppBrowser()
+
+    // Root cause guard: mobile/in-app browsers can lose WebGL context during fast route changes.
+    // Keep the 3D logo feature, but lower GPU pressure in "lite mode".
+    setIsLiteMode(shouldUseLightMode)
+    setCanRender3D(supports3D)
   }, [])
+
+  useEffect(() => {
+    if (!canRender3D || has3DError || is3DReady) return undefined
+
+    const safetyTimer = setTimeout(() => {
+      setHas3DError(true)
+    }, 9000)
+
+    return () => clearTimeout(safetyTimer)
+  }, [canRender3D, has3DError, is3DReady])
 
   const showLoadingFallback = canRender3D && !has3DError && !is3DReady
   const showStaticFallback = !canRender3D || has3DError
@@ -83,7 +103,11 @@ export default function SafeLogo3D() {
     <>
       {fallbackLogo}
       <Logo3DErrorBoundary onError={() => setHas3DError(true)}>
-        <Logo3D onReady={() => setIs3DReady(true)} />
+        <Logo3D
+          liteMode={isLiteMode}
+          onReady={() => setIs3DReady(true)}
+          onContextLost={() => setHas3DError(true)}
+        />
       </Logo3DErrorBoundary>
     </>
   )

@@ -20,12 +20,14 @@ export default function CodeBackground() {
 
     const isMobile = window.matchMedia('(max-width: 768px)').matches;
     const isTablet = window.matchMedia('(max-width: 1280px)').matches;
+    const isInAppBrowser = /(Instagram|FBAN|FBAV|FB_IAB|Line|Snapchat|Twitter)/i.test(navigator.userAgent || '');
     const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
     const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
 
     let count = 52;
     if (isTablet) count = 34;
     if (isMobile) count = 14;
+    if (isInAppBrowser) count = Math.min(count, 10);
     if (lowCpu || lowMemory) count = Math.min(count, 10);
 
     const elements = [];

@@ -35,6 +35,15 @@ function LogoModel({ onReady }) {
 
   useEffect(() => {
     if (typeof onReady === "function") onReady();
+
+    return () => {
+      cloned.traverse((obj) => {
+        if (!obj.isMesh) return;
+        if (obj.geometry) obj.geometry.dispose();
+        const mats = Array.isArray(obj.material) ? obj.material : [obj.material];
+        mats.forEach((mat) => mat?.dispose?.());
+      });
+    };
   }, [onReady, cloned]);
 
   useFrame((_, delta) => {
@@ -50,7 +59,7 @@ function LogoModel({ onReady }) {
   );
 }
 
-export default function Logo3D({ onReady }) {
+export default function Logo3D({ onReady, onContextLost, liteMode = false }) {
   // Render directly into document.body, completely outside
   // the .container div and all its broken stacking contexts
   return createPortal(
@@ -68,13 +77,29 @@ export default function Logo3D({ onReady }) {
     >
       <Canvas
         camera={{ position: [0, 0, 3], fov: 45 }}
-        dpr={[1, 2]}
-        gl={{ alpha: true, antialias: true }}
-        onCreated={({ gl }) => gl.setClearAlpha(0)}
+        dpr={liteMode ? [0.75, 1.1] : [1, 1.8]}
+        gl={{
+          alpha: true,
+          antialias: !liteMode,
+          powerPreference: liteMode ? "low-power" : "high-performance",
+          preserveDrawingBuffer: false,
+        }}
+        onCreated={({ gl }) => {
+          gl.setClearAlpha(0)
+          const canvas = gl.domElement
+          if (canvas && typeof onContextLost === 'function') {
+            const handleLost = (event) => {
+              event.preventDefault()
+              onContextLost()
+            }
+            canvas.addEventListener('webglcontextlost', handleLost, { passive: false })
+          }
+        }}
+        performance={{ min: 0.5, max: liteMode ? 0.8 : 1, debounce: 300 }}
         style={{ width: "100%", height: "100%" }}
       >
-        <ambientLight intensity={0.7} />
-        <directionalLight position={[2, 2, 2]} intensity={1.2} />
+        <ambientLight intensity={liteMode ? 0.6 : 0.7} />
+        <directionalLight position={[2, 2, 2]} intensity={liteMode ? 0.95 : 1.2} />
         <Suspense fallback={null}>
           <Environment preset="studio" />
           <LogoModel onReady={onReady} />

@@ -17,6 +17,20 @@
   }
 }
 
+/* Futuristic/hacker paragraph style for Contact page copy */
+.contact-page .text-zone p {
+  font-family: "ByteBounce", "HackbotFreeTrial", "Courier New", monospace !important;
+  letter-spacing: 0.045em;
+  font-size: 22px;
+  margin-top: 0px;
+  line-height: 1.62;
+  color: #ecfff4;
+}
+
+.contact-page .text-zone h1 {
+  margin-bottom: 0px;
+}
+
 .contact-form {
   width: 100%;
   margin-top: 20px;
@@ -108,6 +122,20 @@
   opacity: 0;
   animation: backInRight 1s 1.2s;
   animation-fill-mode: forwards;
+}
+
+.map-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "HackbotFreeTrial", "Helvetica Neue", sans-serif;
+  font-size: 1.2rem;
+  color: rgba(213, 255, 233, 0.92);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(0, 184, 92, 0.22), transparent 42%),
+    linear-gradient(145deg, rgba(0, 16, 11, 0.92), rgba(0, 28, 17, 0.92));
 }
 
 .info-map {

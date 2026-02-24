@@ -1,25 +1,40 @@
-import { useEffect, useState } from 'react'
+import { Component, Suspense, lazy, useEffect, useState } from 'react'
 import { Loader } from 'react-loaders'
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import { useRef } from 'react'
-import L from 'leaflet'
 import emailjs from '@emailjs/browser'
 import AnimatedLetters from '../AnimatedLetters'
-import 'leaflet/dist/leaflet.css'
 import './index.scss'
 
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png'
-import markerIcon from 'leaflet/dist/images/marker-icon.png'
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'
+const LeafletMap = lazy(() => import('./LeafletMap'))
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: markerIcon2x,
-  iconUrl: markerIcon,
-  shadowUrl: markerShadow,
-})
+class MapErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { hasError: false }
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error, info) {
+    // Route-crash prevention: map issues must not take down the whole page.
+    // eslint-disable-next-line no-console
+    console.error('Leaflet map runtime error:', error, info)
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div className="map-fallback">Map temporarily unavailable</div>
+    }
+
+    return this.props.children
+  }
+}
 
 const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
+  const [mountMap, setMountMap] = useState(false)
   const form = useRef()
 
  useEffect(() => {
@@ -28,6 +43,11 @@ const Contact = () => {
     }, 3000)
     return () => clearTimeout(timer)
 }, [])
+
+  useEffect(() => {
+    const deferMap = setTimeout(() => setMountMap(true), 180)
+    return () => clearTimeout(deferMap)
+  }, [])
 
   const sendEmail = (e) => {
     e.preventDefault()
@@ -100,12 +120,11 @@ const Contact = () => {
           </div>
         </div>
         <div className="map-wrap">
-            <MapContainer center={[45.5017, -73.5673]} zoom={13}>
-                <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-                <Marker position={[45.5017, -73.5673]}>
-                    <Popup>my HQ</Popup>
-                </Marker>
-            </MapContainer>
+            <MapErrorBoundary>
+              <Suspense fallback={<div className="map-fallback">Loading map...</div>}>
+                {mountMap ? <LeafletMap /> : <div className="map-fallback">Loading map...</div>}
+              </Suspense>
+            </MapErrorBoundary>
             <div className="info-map">
               williams lendjoungou,
               <br />
