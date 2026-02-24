@@ -13,8 +13,7 @@ function App() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    const isMobile = window.matchMedia('(max-width: 900px)').matches
-    if (prefersReducedMotion || isMobile) {
+    if (prefersReducedMotion) {
       setShowBg(false)
       return undefined
     }

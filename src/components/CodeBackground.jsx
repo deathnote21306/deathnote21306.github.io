@@ -18,18 +18,27 @@ export default function CodeBackground() {
     const container = containerRef.current;
     if (!container) return undefined;
 
-    const count = window.matchMedia('(max-width: 1280px)').matches ? 34 : 52;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    const isTablet = window.matchMedia('(max-width: 1280px)').matches;
+    const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
+    const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
+
+    let count = 52;
+    if (isTablet) count = 34;
+    if (isMobile) count = 14;
+    if (lowCpu || lowMemory) count = Math.min(count, 10);
+
     const elements = [];
 
     for (let i = 0; i < count; i++) {
       const el = document.createElement("span");
       el.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
 
-      const size = randomBetween(10, 18);
+      const size = isMobile ? randomBetween(9, 14) : randomBetween(10, 18);
       const x = randomBetween(0, 100);
-      const duration = randomBetween(18, 45);
+      const duration = isMobile ? randomBetween(30, 55) : randomBetween(18, 45);
       const delay = randomBetween(0, 30);
-      const opacity = randomBetween(0.6, 0.85); // ⬆️ raised opacity range
+      const opacity = isMobile ? randomBetween(0.3, 0.5) : randomBetween(0.6, 0.85);
 
       el.style.cssText = `
         position: absolute;
