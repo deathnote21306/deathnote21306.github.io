@@ -15,7 +15,7 @@ const playerCard = {
   ],
   attributes: [
     { label: 'School', value: 'McGill University' },
-    { label: 'From', value: 'Montreal, Canada' },
+    { label: 'From', value: 'Libreville, Gabon' },
     { label: 'Languages', value: 'English, French' },
     { label: 'Focus Area', value: 'Full-Stack + ML Builder' },
     { label: 'Hobbies', value: 'Chess, Hackathons, Architect (system builder)' },
