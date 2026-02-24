@@ -16,7 +16,9 @@ export default function CodeBackground() {
 
   useEffect(() => {
     const container = containerRef.current;
-    const count = 60;
+    if (!container) return undefined;
+
+    const count = window.matchMedia('(max-width: 1280px)').matches ? 34 : 52;
     const elements = [];
 
     for (let i = 0; i < count; i++) {

@@ -39,13 +39,27 @@ const hasWebGLSupport = () => {
   }
 }
 
+const isMobileOrLowPowerDevice = () => {
+  if (typeof window === 'undefined') return false
+
+  const ua = navigator.userAgent || ''
+  const isMobileUA = /Android|iPhone|iPad|iPod|Mobile/i.test(ua)
+  const isSmallViewport = window.matchMedia('(max-width: 900px)').matches
+  const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4
+  const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4
+
+  return isMobileUA || isSmallViewport || lowCpu || lowMemory
+}
+
 export default function SafeLogo3D() {
   const [canRender3D, setCanRender3D] = useState(true)
   const [has3DError, setHas3DError] = useState(false)
   const [is3DReady, setIs3DReady] = useState(false)
 
   useEffect(() => {
-    setCanRender3D(hasWebGLSupport())
+    const supports3D = hasWebGLSupport()
+    const shouldUseLightMode = isMobileOrLowPowerDevice()
+    setCanRender3D(supports3D && !shouldUseLightMode)
   }, [])
 
   const showLoadingFallback = canRender3D && !has3DError && !is3DReady

@@ -12,6 +12,13 @@ function App() {
   const [showBg, setShowBg] = useState(false);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isMobile = window.matchMedia('(max-width: 900px)').matches
+    if (prefersReducedMotion || isMobile) {
+      setShowBg(false)
+      return undefined
+    }
+
     const timer = setTimeout(() => setShowBg(true), 2000);
     return () => clearTimeout(timer);
   }, []);
