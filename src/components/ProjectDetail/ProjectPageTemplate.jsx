@@ -72,7 +72,7 @@ const ProjectPageTemplate = ({ project }) => {
         <div className="dossier-hero__left">
           <div className="dossier-hero__eyebrow">
             <span>OPERATION PROFILE</span>
-            <span className="dossier-hero__eyebrow-sep" aria-hidden="true">//</span>
+            <span className="dossier-hero__eyebrow-sep" aria-hidden="true">{'//'}</span>
             <span>CLASSIFICATION: PORTFOLIO</span>
           </div>
 
