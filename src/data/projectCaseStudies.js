@@ -1,4 +1,7 @@
 import projects from './projects'
+import neuralSpellbookCover from '../assets/images/neuralspellbook-cover.png'
+import neuralSpellbookSpellFails from '../assets/images/neuralspellbook-spell-fails.png'
+import neuralSpellbookTraining from '../assets/images/neuralspellbook-training.png'
 
 const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]))
 
@@ -81,6 +84,146 @@ const buildCaseStudy = ({
 }
 
 const projectCaseStudies = [
+  buildCaseStudy({
+    slug: 'neural-spellbook',
+    decorative: 'neural-grid',
+    githubUrl: 'https://github.com/deathnote21306/NeuralSpellBook',
+    heroParagraph:
+      'NeuralSpellBook is a fully native iPad app built in Swift and SwiftUI for the Apple Swift Student Challenge 2026. It teaches how neural networks really work through five interactive chapters — Decisions, Mistakes, Learning, Training, and Discovery — using real-time animated visualizations, interactive sliders, and live feedback. Each chapter surfaces a concrete concept: how a neuron decides, how loss is measured, how the network corrects mistakes through backpropagation, and how hyperparameters like speed, batch size, and rounds control the entire learning outcome. The architecture is entirely offline, self-contained, and free of external dependencies — designed to make the fundamentals of AI genuinely accessible without any prior coding knowledge.',
+    metrics: [
+      { label: 'Chapters', value: '5 Interactive' },
+      { label: 'Screens', value: '12 Slides' },
+      { label: 'Challenge', value: 'Swift 2026' },
+      { label: 'Code Required', value: 'None' },
+    ],
+    problem: {
+      statement:
+        'Neural networks are taught through formulas and slides that describe behavior without letting learners feel it. Most people leave an ML course knowing the terms but having no intuition for what happens inside a forward pass or why a network fails to learn.',
+      audience:
+        'Students, curious learners, and non-programmers who want to understand how AI really works, without needing to write a single line of code.',
+      impact:
+        'A hands-on, visual-first experience removes the conceptual barrier, turning abstract math into something you can drag, tap, and watch change in real time.',
+    },
+    features: [
+      {
+        title: 'Five-Chapter Neural Journey',
+        bullets: [
+          'Chapter I: Decisions — how a neuron makes a prediction',
+          'Chapter II: Mistakes — live loss visualization with interactive target ring',
+          'Chapter III: Learning — backpropagation concept surfaced step by step',
+          'Chapter IV: Training — adjust speed, batch size, and rounds; watch the outcome',
+          'Chapter V: Discovery — free exploration of the trained network',
+        ],
+      },
+      {
+        title: 'Real-Time Animated Visualizations',
+        bullets: [
+          'Starfield neural network canvas with animated nodes and connections',
+          'Live loss meter showing percentage with directional ring feedback',
+          'Gradient typography and spatial iPad-optimized layout throughout',
+        ],
+      },
+      {
+        title: 'Native Swift Architecture',
+        bullets: [
+          'Built entirely in Swift and SwiftUI — no external libraries or bridges',
+          'CoreML for in-process neural computation with zero-latency feedback',
+          'Offline, self-contained — no network calls, no backend dependencies',
+        ],
+      },
+    ],
+    architecture: [
+      {
+        label: 'UI Layer',
+        detail:
+          'Pure SwiftUI declarative views with custom Canvas API animations rendering the neural network starfield and loss ring at 60fps.',
+      },
+      {
+        label: 'Chapter Engine',
+        detail:
+          'State-machine driven chapter progression with 5 states; each chapter unlocks after the user completes the interactive objective.',
+      },
+      {
+        label: 'Computation',
+        detail:
+          'CoreML-backed training simulation keeps inference fully in-process. Chapter IV exposes speed, batch size, and rounds as live hyperparameters.',
+      },
+      {
+        label: 'Asset System',
+        detail:
+          'Custom starfield backgrounds, gradient text rendering, and haptic feedback integrated to reinforce key learning moments.',
+      },
+    ],
+    architectureFlow: [
+      'User opens app on iPad',
+      'Chapter selection screen renders (I–V tabs)',
+      'Chapter state machine activates',
+      'Neural canvas initializes with starfield',
+      'User interacts — taps, drags, adjusts sliders',
+      'CoreML processes inputs in real-time',
+      'Animated visualization updates live',
+      'Chapter completes → next chapter unlocks',
+    ],
+    implementation: {
+      backend: [
+        'No server-side component — fully offline and self-contained. State managed with @Observable and Combine pipelines.',
+        'Chapter progression is deterministic; each chapter has a clear entry condition and a completion check before the next unlocks.',
+      ],
+      frontend: [
+        'All views are pure SwiftUI — declarative, composable, and optimized for the iPad spatial canvas.',
+        'Custom animated views render the neural network and loss ring using the SwiftUI Canvas API with geometry caching to avoid redundant redraws.',
+      ],
+      ai: [
+        'CoreML integration powers the neural computation layer, keeping inference in-process for zero-latency feedback visible to the user.',
+        'Chapter IV exposes three real hyperparameters — speed, batch size, rounds — with a live training outcome simulation updating as sliders move.',
+      ],
+      optimization: [
+        'Animation targets 60fps using the SwiftUI built-in animation scheduler; heavy canvas redraws minimized with geometry caching.',
+        'Haptic feedback synchronized with key learning moments — correct predictions, loss drops, and chapter completions.',
+      ],
+    },
+    challenges: [
+      {
+        challenge:
+          'Making backpropagation intuitively understandable without showing any math or code.',
+        solution:
+          'Split the concept into two chapters: "Mistakes" shows loss as a concrete percentage with a ring that physically shrinks toward the target as the user drags a slider — making the gradient direction something you feel, not just read.',
+      },
+      {
+        challenge:
+          'Keeping SwiftUI canvas animations synchronized with CoreML computation state without dropped frames.',
+        solution:
+          'Used @Published state objects with Combine pipelines to propagate ML state updates into the SwiftUI animation system, batching all main-thread updates to prevent stutter during continuous slider interaction.',
+      },
+    ],
+    resultNotes: [
+      'Successfully submitted to Apple Swift Student Challenge 2026 — end-to-end native Swift app.',
+      'Five fully playable chapters across 12 screens: decisions, loss, backpropagation, training, and discovery.',
+      'Zero external dependencies — fully offline, self-contained, and optimized for iPad.',
+    ],
+    resultVisuals: [
+      {
+        title: 'Home — Chapter Selection',
+        caption: 'Starfield landing screen with five chapter tabs and the neural orb ready to begin.',
+        image: neuralSpellbookCover,
+      },
+      {
+        title: 'Chapter II — The Spell Fails',
+        caption: 'Live loss visualization: the ring closes toward the target as the learner adjusts the prediction slider.',
+        image: neuralSpellbookSpellFails,
+      },
+      {
+        title: 'Chapter IV — Training the Trainer',
+        caption: 'Interactive hyperparameter panel: speed, batch size, and rounds — all real, all live.',
+        image: neuralSpellbookTraining,
+      },
+    ],
+    future: [
+      'Expand to a convolutional network chapter with image recognition visualization.',
+      'Add a "Build Your Own Network" sandbox where learners configure layer sizes and activation functions.',
+      'Submit to the App Store as a public educational tool with a teacher mode for classroom use.',
+    ],
+  }),
   buildCaseStudy({
     slug: 'ai-chatbot-fastapi',
     decorative: 'neural-grid',

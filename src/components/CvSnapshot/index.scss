@@ -1,232 +1,403 @@
+/* ─── CV Snapshot ──────────────────────────────────────────────── */
+
 .cv-snapshot {
   position: relative;
 }
 
 .cv-snapshot__kicker {
-  margin: 0 0 1rem;
-  color: rgba(168, 245, 208, 0.86);
+  margin: 0 0 1.2rem;
+  color: rgba(168, 245, 208, 0.78);
   font-family: "Coolvetica";
-  font-size: 1.15rem;
-  letter-spacing: 0.14rem;
+  font-size: 1.1rem;
+  letter-spacing: 0.18rem;
   text-transform: uppercase;
 }
 
-.cv-snapshot__highlights {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  margin-bottom: 1.2rem;
+/* ─── Bento grid ───────────────────────────────────────────────── */
 
-  span {
-    border: 1px solid rgba(0, 184, 92, 0.34);
-    border-radius: 999px;
-    padding: 0.45rem 0.9rem;
-    font-size: 1.2rem;
-    line-height: 1.35;
-    color: rgba(226, 255, 242, 0.95);
-    background: rgba(3, 19, 12, 0.35);
-    max-width: 100%;
-  }
-}
-
-.cv-snapshot__grid {
+.cv-snapshot__bento {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 0.95fr;
-  gap: 1rem;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 0.85rem;
+  grid-template-areas:
+    "experience skills"
+    "projects   edu-lead";
 }
+
+.cv-snapshot__block--experience { grid-area: experience; }
+.cv-snapshot__block--skills     { grid-area: skills; }
+.cv-snapshot__block--projects   { grid-area: projects; }
+.cv-snapshot__block--edu-lead   { grid-area: edu-lead; }
+
+/* ─── Cards ────────────────────────────────────────────────────── */
 
 .cv-snapshot__block {
-  border: 1px solid rgba(120, 255, 188, 0.24);
-  border-radius: 14px;
-  padding: 1rem;
-  background: rgba(4, 16, 12, 0.16);
-  backdrop-filter: blur(2px);
+  border: 1px solid rgba(120, 255, 188, 0.2);
+  border-radius: 16px;
+  padding: 1.3rem 1.45rem;
+  background: rgba(4, 16, 12, 0.22);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
 
-  h4 {
-    margin: 0 0 0.8rem;
-    font-family: "Coolvetica";
-    font-size: 1.55rem;
-    letter-spacing: 0.08rem;
-    color: #c8ffe2;
-    font-weight: 400;
+  &:hover {
+    border-color: rgba(0, 184, 92, 0.38);
+    box-shadow: 0 0 24px rgba(0, 184, 92, 0.07);
   }
 }
 
-.cv-snapshot__timeline,
-.cv-snapshot__education,
-.cv-snapshot__awards {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+/* ─── Block title ──────────────────────────────────────────────── */
 
-.cv-snapshot__timeline li {
-  padding: 0.65rem 0;
-  border-bottom: 1px dashed rgba(125, 245, 192, 0.18);
-
-  &:last-child {
-    border-bottom: none;
-  }
-
-  p {
-    margin: 0.38rem 0 0;
-    font-size: 1.16rem;
-    line-height: 1.45;
-    color: rgba(232, 255, 243, 0.9);
-  }
-}
-
-.cv-snapshot__line-head {
+.cv-snapshot__block-title {
+  margin: 0 0 1rem;
   display: flex;
-  justify-content: space-between;
-  gap: 0.7rem;
-  align-items: flex-start;
-
-  strong {
-    color: #e9fff4;
-    font-size: 1.2rem;
-    line-height: 1.35;
-  }
-
-  span {
-    color: rgba(166, 236, 204, 0.84);
-    font-size: 1.05rem;
-    white-space: nowrap;
-  }
-}
-
-.cv-snapshot__line-sub {
-  margin-top: 0.22rem;
-  color: rgba(166, 236, 204, 0.86);
-  font-size: 1.1rem;
-}
-
-.cv-snapshot__skills > div + div {
-  margin-top: 0.8rem;
-}
-
-.cv-snapshot__skills h5 {
-  margin: 0 0 0.4rem;
-  color: rgba(178, 255, 216, 0.9);
+  align-items: center;
+  gap: 0.55rem;
   font-family: "Coolvetica";
-  font-size: 1.2rem;
-  letter-spacing: 0.09rem;
-  text-transform: uppercase;
+  font-size: 1.4rem;
+  letter-spacing: 0.1rem;
+  color: #c8ffe2;
   font-weight: 400;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: linear-gradient(180deg, #00b85c 0%, rgba(0, 184, 92, 0.1) 100%);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  &--sub {
+    margin-top: 1.5rem;
+    font-size: 1.18rem;
+    opacity: 0.88;
+  }
 }
 
-.cv-snapshot__skills ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ─── Shared chips ─────────────────────────────────────────────── */
+
+.cv-snapshot__chips {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
 
-  li {
-    padding: 0.3rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid rgba(111, 255, 187, 0.28);
-    color: #dffff0;
-    background: rgba(5, 23, 14, 0.5);
-    font-size: 1.08rem;
+  &--tight {
+    margin-top: 0.42rem;
+    gap: 0.28rem;
   }
 }
 
-.cv-snapshot__education li {
-  padding: 0.55rem 0;
-  border-bottom: 1px dashed rgba(125, 245, 192, 0.18);
+.cv-snapshot__chip {
+  display: inline-block;
+  padding: 0.25rem 0.58rem;
+  border-radius: 6px;
+  border: 1px solid rgba(111, 255, 187, 0.22);
+  background: rgba(5, 23, 14, 0.5);
+  color: rgba(200, 255, 226, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.35;
+  white-space: nowrap;
+
+  &--accent {
+    border-color: rgba(0, 184, 92, 0.42);
+    background: rgba(0, 184, 92, 0.1);
+    color: #a8ffce;
+  }
+
+  &--highlight {
+    border-color: rgba(255, 210, 80, 0.28);
+    background: rgba(255, 180, 0, 0.07);
+    color: rgba(255, 232, 152, 0.92);
+    font-size: 0.88rem;
+  }
+}
+
+/* ─── Experience timeline ──────────────────────────────────────── */
+
+.cv-snapshot__timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-snapshot__job {
+  position: relative;
+  padding: 0.75rem 0 0.78rem 1rem;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.13);
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+    width: 2px;
+    height: calc(100% - 1.4rem);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 184, 92, 0.72) 0%,
+      rgba(0, 184, 92, 0.04) 100%
+    );
+    border-radius: 2px;
+  }
 
   &:last-child {
     border-bottom: none;
-    padding-bottom: 0.3rem;
-  }
-
-  strong,
-  span,
-  em {
-    display: block;
-  }
-
-  strong {
-    color: #e9fff4;
-    font-size: 1.18rem;
-  }
-
-  span {
-    margin-top: 0.2rem;
-    color: rgba(219, 255, 237, 0.86);
-    font-size: 1.1rem;
-    line-height: 1.4;
-  }
-
-  em {
-    margin-top: 0.18rem;
-    color: rgba(154, 229, 195, 0.82);
-    font-size: 1.05rem;
-    font-style: normal;
+    padding-bottom: 0;
   }
 }
 
-.cv-snapshot__awards {
-  margin-top: 0.8rem;
+.cv-snapshot__job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.cv-snapshot__job-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.cv-snapshot__job-role {
+  color: #e9fff4;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.cv-snapshot__job-company {
+  color: rgba(166, 236, 204, 0.82);
+  font-size: 1.05rem;
+}
+
+.cv-snapshot__job-period {
+  color: rgba(154, 229, 195, 0.72);
+  font-size: 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cv-snapshot__metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.38rem;
+  margin-top: 0.55rem;
+}
+
+.cv-snapshot__metric-pill {
+  display: inline-block;
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  background: rgba(0, 184, 92, 0.14);
+  border: 1px solid rgba(0, 184, 92, 0.42);
+  color: #7fffc0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.cv-snapshot__bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 0;
 
   li {
-    color: rgba(218, 255, 237, 0.9);
-    font-size: 1.08rem;
-    line-height: 1.45;
-    padding-left: 1rem;
     position: relative;
+    padding-left: 1rem;
+    margin-bottom: 0.28rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: rgba(222, 255, 240, 0.85);
 
     &::before {
-      content: ">";
+      content: "›";
       position: absolute;
       left: 0;
-      color: rgba(125, 245, 192, 0.85);
+      color: rgba(0, 184, 92, 0.7);
+      font-size: 1.1rem;
+      line-height: 1.45;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .cv-snapshot__grid {
-    grid-template-columns: 1fr 1fr;
-  }
+/* ─── Skills ───────────────────────────────────────────────────── */
 
-  .cv-snapshot__block:last-child {
-    grid-column: 1 / -1;
+.cv-snapshot__skill-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.cv-snapshot__skill-label {
+  margin: 0 0 0.36rem;
+  font-family: "Coolvetica";
+  font-size: 1.05rem;
+  letter-spacing: 0.09rem;
+  text-transform: uppercase;
+  color: rgba(178, 255, 216, 0.82);
+  font-weight: 400;
+}
+
+/* ─── Projects ─────────────────────────────────────────────────── */
+
+.cv-snapshot__project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-snapshot__project {
+  padding: 0.72rem 0;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.13);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.cv-snapshot__project-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.cv-snapshot__project-title {
+  color: #e9fff4;
+  font-size: 1.12rem;
+  line-height: 1.35;
+}
+
+.cv-snapshot__project-bullet {
+  margin: 0.42rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(222, 255, 240, 0.82);
+}
+
+/* ─── Education ────────────────────────────────────────────────── */
+
+.cv-snapshot__edu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-snapshot__edu-item {
+  padding: 0.68rem 0;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.13);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.cv-snapshot__edu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.cv-snapshot__edu-school {
+  display: block;
+  color: #e9fff4;
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.cv-snapshot__edu-period {
+  color: rgba(154, 229, 195, 0.72);
+  font-size: 1rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cv-snapshot__edu-degree {
+  display: block;
+  margin-top: 0.2rem;
+  color: rgba(205, 255, 230, 0.84);
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+/* ─── Leadership ───────────────────────────────────────────────── */
+
+.cv-snapshot__lead-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cv-snapshot__lead-item {
+  padding: 0.68rem 0;
+  border-bottom: 1px dashed rgba(125, 245, 192, 0.13);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}
+
+.cv-snapshot__lead-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.cv-snapshot__lead-title {
+  color: #e9fff4;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+/* ─── Responsive ───────────────────────────────────────────────── */
+
+@media screen and (max-width: 1200px) {
+  .cv-snapshot__bento {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "experience experience"
+      "projects   skills"
+      "edu-lead   edu-lead";
   }
 }
 
 @media screen and (max-width: 768px) {
-  .cv-snapshot__highlights {
-    margin-bottom: 1rem;
-
-    span {
-      width: 100%;
-      border-radius: 12px;
-    }
-  }
-
-  .cv-snapshot__grid {
+  .cv-snapshot__bento {
     grid-template-columns: 1fr;
+    grid-template-areas:
+      "experience"
+      "projects"
+      "skills"
+      "edu-lead";
   }
 
-  .cv-snapshot__block:last-child {
-    grid-column: auto;
-  }
-
-  .cv-snapshot__line-head {
+  .cv-snapshot__job-header,
+  .cv-snapshot__edu-header,
+  .cv-snapshot__lead-header {
     flex-direction: column;
-    gap: 0.15rem;
+    gap: 0.18rem;
+  }
 
-    span {
-      white-space: normal;
-    }
+  .cv-snapshot__job-period,
+  .cv-snapshot__edu-period {
+    white-space: normal;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .cv-snapshot__block {
     backdrop-filter: none;
+    transition: none;
   }
 }

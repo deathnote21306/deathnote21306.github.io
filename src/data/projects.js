@@ -1,4 +1,5 @@
 // Add a new project by appending one object to this array with a unique `slug` and image import.
+import neuralSpellbookCover from '../assets/images/neuralspellbook-cover.png'
 import airlineCover from '../assets/images/airline-cover.png'
 import pdfRagUiCover from '../assets/images/pdf-rag-ui-cover.png'
 import robotDesignCover from '../assets/images/robot-design-cover.png'
@@ -6,6 +7,15 @@ import linearRegressionCover from '../assets/images/linear-regression-illustrati
 import n8nLogo from '../assets/images/n8n-logo.svg'
 
 const projects = [
+  {
+    id: 0,
+    slug: 'neural-spellbook',
+    title: 'NeuralSpellBook',
+    description:
+      'An interactive iOS educational platform built for the Apple Swift Student Challenge 2026. Five chapters guide learners through how neural networks actually work — decisions, loss, backpropagation, training, and discovery — entirely without code.',
+    stack: ['Swift', 'SwiftUI', 'CoreML', 'iOS'],
+    coverImage: neuralSpellbookCover,
+  },
   {
     id: 1,
     slug: 'ai-chatbot-fastapi',
