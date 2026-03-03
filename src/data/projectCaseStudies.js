@@ -85,7 +85,7 @@ const projectCaseStudies = [
     slug: 'ai-chatbot-fastapi',
     decorative: 'neural-grid',
     githubUrl: 'https://github.com/deathnote21306/rag-backend-fastapi',
-    demoUrl: 'http://localhost:8000',
+    demoUrl: 'http://127.0.0.1:8000',
     heroParagraph:
       'This system is engineered as a retrieval-first assistant for high-signal answers in domain-specific corpora. The API orchestrates document chunking, embedding search, context assembly, and guarded generation so responses stay grounded instead of generic. The architecture focuses on low-latency retrieval, deterministic processing stages, and debuggable inference traces, making it a technically strong foundation for production-facing support and internal knowledge operations.',
     problem: {
@@ -322,62 +322,69 @@ const projectCaseStudies = [
   buildCaseStudy({
     slug: 'ev3-robot-design',
     decorative: 'circuit-orbit',
+    reportUrl: '/reports/ecse-211-final-report.pdf',
     heroParagraph:
-      'This robotics project combines embedded control logic, environment navigation, and constrained-system optimization to deliver an autonomous EV3 robot task flow. The implementation bridges high-level logic and physical actuation, requiring precise coordination between sensing, pathing, and command execution in a bounded arena. Technical interest is driven by real-world constraints: finite compute, hardware noise, and deterministic behavior requirements under strict completion criteria.',
+      'This project delivers an autonomous EV3 firefighter robot for a 1.2m x 1.2m simulated building environment. The system was engineered to leave the base station, enter the fire room through the main door, detect floor-mounted fire targets, drop extinguishing cubes with a custom dispenser, and backtrack home under strict hardware, timing, and material constraints. The final design balances embedded control logic, sensor calibration, and physical reliability rather than relying on idealized motion or simulation-only assumptions.',
     problem: {
       statement:
-        'Autonomous robotics tasks fail quickly when control logic assumes perfect sensor data and static conditions.',
-      audience: 'Robotics builders, embedded-system learners, and teams validating autonomous behavior in constrained environments.',
+        'A firefighter rescue robot has to find and extinguish two fires autonomously while avoiding walls, furniture, and incorrect rooms despite noisy sensors, imperfect motion, and severe build constraints.',
+      audience: 'Robotics students, embedded-systems builders, and teams validating autonomous behavior in uncertainty-heavy physical environments.',
       impact:
-        'A resilient control loop improves completion consistency and demonstrates practical engineering beyond simulation-only results.',
+        'The project demonstrates how robust behavior emerges from careful calibration, subsystem tradeoffs, and fallback-friendly control logic rather than from ideal hardware assumptions.',
     },
     features: [
       {
-        title: 'Autonomous Navigation',
-        bullets: ['Obstacle-aware movement decisions', 'Grid/path progression logic', 'Environment completion state tracking'],
+        title: 'Mission Navigation',
+        bullets: ['Hardcoded base-to-room entry path', 'Ultrasonic wall and obstacle detection', 'Stack-based return-to-base backtracking'],
       },
       {
-        title: 'Embedded Runtime Adaptation',
-        bullets: ['Java VM compatibility handling', 'Command timing calibration', 'Hardware-oriented fail-safe paths'],
+        title: 'Fire Detection + Extinguishing',
+        bullets: ['Downward color-sensor fire recognition', 'Two-cube extinguisher payload', 'Tennis-racket dispenser with near-perfect test accuracy'],
       },
       {
-        title: 'Mission Control Readability',
-        bullets: ['Deterministic state transitions', 'Debug-friendly event checkpoints', 'Recovery branch support'],
+        title: 'Embedded Safety + Reliability',
+        bullets: ['Startup siren during deployment route', 'Manual emergency stop via touch sensor', 'Calibration factors for wheel imbalance and sensor noise'],
       },
     ],
     implementation: {
       backend: [
-        'Robot control stack is organized as modular command/state handlers for clear execution sequencing.',
+        'Control logic was modularized into movement, turning, wall detection, color classification, dispenser activation, siren playback, emergency stop, and return-to-base functions.',
+        'A movement stack records core displacements so the robot can reverse the path and approximate its return to the base station after extinguishing two fires.',
       ],
       frontend: [
-        'No traditional web frontend; development tooling centers around telemetry interpretation and iterative tuning.',
+        'There is no traditional web frontend; iteration depended on repeated physical testing, telemetry interpretation, and hardware-software tuning inside the demo environment.',
       ],
       ai: [
-        'Primary logic is rule-based autonomous control with extensible hooks for perception enhancement.',
+        'The final room-search behavior uses a practical random-walk strategy instead of a more brittle DFS-style mapping approach, because the hardware could not support precise localization reliably.',
       ],
       optimization: [
-        'Latency-sensitive routines tuned for EV3 constraints and stable execution cadence.',
-        'Calibration strategy reduces sensor jitter impact in repeated mission runs.',
+        'Color detection was calibrated with ratio-based RGB thresholds and moving-average filtering to separate red, green, yellow, purple, white, and black under varying lighting conditions.',
+        'Wheel-turn correction factors, sensor positioning, and a higher-torque dispenser motor were introduced to improve repeatability in full-system runs.',
       ],
     },
     challenges: [
       {
-        challenge: 'Sensor variance produced unstable path decisions during obstacle encounters.',
-        solution: 'Introduced filtering thresholds and confidence gating before action commits.',
+        challenge: 'Early design ideas such as a map-aware search algorithm and more complex dispenser mechanisms proved too fragile for the actual hardware behavior.',
+        solution: 'The final system simplified the search logic to a sensor-driven random walk and selected the most reliable dispenser concept rather than the most mechanically ambitious one.',
       },
       {
-        challenge: 'Hardware command timing drift affected deterministic completion.',
-        solution: 'Refined control loop cadence and added corrective timing windows per maneuver type.',
+        challenge: 'Weight imbalance, inconsistent motor behavior, and component faults caused turning drift and subsystem failures during integration.',
+        solution: 'The team added wheel correction factors, redistributed weight with added support, and replaced faulty BrickPi and speaker hardware to stabilize the final robot.',
       },
     ],
+    metrics: [
+      { label: 'Arena', value: '1.2m × 1.2m' },
+      { label: 'Fire Targets', value: '2 red floor markers' },
+      { label: 'Door Limit', value: '< 22 cm robot width' },
+    ],
     resultNotes: [
-      'Autonomous run sequence completed target environment with improved reliability over initial baseline.',
-      'Architecture is prepared for future sensor-fusion enhancements and richer decision policies.',
+      'The final design combined calibrated sensing, reliable cube deployment, and modular control logic into a workable autonomous firefighter mission flow.',
+      'Testing validated the chosen tennis-racket dispenser, the room-entry path, the wall-detection behavior, and the stack-based return strategy under the actual demo setup.',
     ],
     future: [
-      'Integrate vision-based perception for dynamic target identification.',
-      'Add replay logs for post-run diagnostics and control tuning.',
-      'Explore hybrid rule+learning controller for adaptive path refinement.',
+      'Replace the random-walk room scan with a more structured exploration policy once localization becomes trustworthy.',
+      'Improve the emergency-stop responsiveness by reducing touch-sensor or software latency.',
+      'Extend the design with richer post-run logging and more resilient multi-sensor fusion.',
     ],
   }),
   buildCaseStudy({

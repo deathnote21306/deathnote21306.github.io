@@ -1,6 +1,6 @@
 // Add a new project by appending one object to this array with a unique `slug` and image import.
 import airlineCover from '../assets/images/airline-cover.png'
-import ragChatbotCover from '../assets/images/rag-chatbot-cover.png'
+import pdfRagUiCover from '../assets/images/pdf-rag-ui-cover.png'
 import robotDesignCover from '../assets/images/robot-design-cover.png'
 import linearRegressionCover from '../assets/images/linear-regression-illustration.svg'
 import n8nLogo from '../assets/images/n8n-logo.svg'
@@ -12,7 +12,7 @@ const projects = [
     title: 'AI-Chatbot Assistant',
     description: 'Built an AI chatbot using Python and FastAPI with retrieval-augmented generation, semantic search over embedded documents, and real-time response synthesis.',
     stack: ['Python', 'FastAPI', 'LangChain', 'RAG'],
-    coverImage: robotDesignCover,
+    coverImage: pdfRagUiCover,
   },
   {
     id: 2,
@@ -34,9 +34,10 @@ const projects = [
     id: 4,
     slug: 'ev3-robot-design',
     title: 'Autonomous Robot Design',
-    description: 'Designed and programmed an autonomous fire-extinguishing robot by porting a Java virtual machine to EV3 and implementing obstacle-avoidance navigation in a constrained environment.',
+    description:
+      'Designed and tested an autonomous EV3 firefighter robot that navigates a constrained arena, detects floor fire targets with calibrated sensing, drops extinguisher cubes accurately, and returns to base after mission completion.',
     stack: ['Java', 'EV3', 'Robotics', 'Algorithms'],
-    coverImage: ragChatbotCover,
+    coverImage: robotDesignCover,
   },
   {
     id: 5,
