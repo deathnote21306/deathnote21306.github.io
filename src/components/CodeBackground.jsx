@@ -16,31 +16,18 @@ export default function CodeBackground() {
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return undefined;
-
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const isTablet = window.matchMedia('(max-width: 1280px)').matches;
-    const isInAppBrowser = /(Instagram|FBAN|FBAV|FB_IAB|Line|Snapchat|Twitter)/i.test(navigator.userAgent || '');
-    const lowCpu = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 4;
-    const lowMemory = typeof navigator.deviceMemory === 'number' && navigator.deviceMemory <= 4;
-
-    let count = 52;
-    if (isTablet) count = 34;
-    if (isMobile) count = 14;
-    if (isInAppBrowser) count = Math.min(count, 10);
-    if (lowCpu || lowMemory) count = Math.min(count, 10);
-
+    const count = 60;
     const elements = [];
 
     for (let i = 0; i < count; i++) {
       const el = document.createElement("span");
       el.textContent = SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)];
 
-      const size = isMobile ? randomBetween(9, 14) : randomBetween(10, 18);
+      const size = randomBetween(10, 18);
       const x = randomBetween(0, 100);
-      const duration = isMobile ? randomBetween(30, 55) : randomBetween(18, 45);
+      const duration = randomBetween(18, 45);
       const delay = randomBetween(0, 30);
-      const opacity = isMobile ? randomBetween(0.3, 0.5) : randomBetween(0.6, 0.85);
+      const opacity = randomBetween(0.25, 0.45);
 
       el.style.cssText = `
         position: absolute;
@@ -50,7 +37,6 @@ export default function CodeBackground() {
         font-family: 'Courier New', monospace;
         color: #00b85c;
         opacity: ${opacity};
-        --op: ${opacity};
         pointer-events: none;
         user-select: none;
         animation: floatSymbol ${duration}s ${delay}s infinite linear;
@@ -69,8 +55,8 @@ export default function CodeBackground() {
       <style>{`
         @keyframes floatSymbol {
           0%   { transform: translateY(0px) rotate(0deg);   opacity: 0; }
-          5%   { opacity: var(--op, 0.75); }
-          95%  { opacity: var(--op, 0.75); }
+          5%   { opacity: var(--op, 0.08); }
+          95%  { opacity: var(--op, 0.08); }
           100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
         }
       `}</style>

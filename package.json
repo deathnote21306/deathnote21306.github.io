@@ -32,7 +32,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "optimize:logo": "gltf-transform optimize public/models/logo.gltf public/models/logo-optimized.glb --compress draco --texture-compress webp --simplify-ratio 0.9"
   },
   "eslintConfig": {
     "extends": [

@@ -6,7 +6,7 @@
 
 .project-carousel__orbit {
   position: relative;
-  height: 455px;
+  height: 510px;
   border-radius: 0;
   border: none;
   background: transparent;
@@ -68,19 +68,19 @@
 
 @media screen and (max-width: 1024px) {
   .project-carousel__orbit {
-    height: 420px;
+    height: 472px;
   }
 }
 
 @media screen and (max-width: 768px) {
   .project-carousel__orbit {
-    height: 352px;
+    height: 398px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .project-carousel__orbit {
-    height: 320px;
+    height: 362px;
     mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
     -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
   }

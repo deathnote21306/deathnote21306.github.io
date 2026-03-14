@@ -68,6 +68,13 @@ const Home = () => {
           <SafeLogo3D />
         </section>
 
+        <section className="projects-showcase" aria-label="Projects carousel">
+          <div className="projects-showcase__label">Projects</div>
+          <div className="projects-showcase__content">
+            <ProjectCarousel />
+          </div>
+        </section>
+
         <section className="player-card-stage" aria-label="Player card">
           <div className="player-card-stage__spacer" aria-hidden="true" />
           <div className="player-card-stage__content">
@@ -79,13 +86,6 @@ const Home = () => {
           <div className="cv-snapshot-stage__label">CV Snapshot</div>
           <div className="cv-snapshot-stage__content">
             <CvSnapshot />
-          </div>
-        </section>
-
-        <section className="projects-showcase" aria-label="Projects carousel">
-          <div className="projects-showcase__label">Projects</div>
-          <div className="projects-showcase__content">
-            <ProjectCarousel />
           </div>
         </section>
         

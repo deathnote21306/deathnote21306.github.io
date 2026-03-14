@@ -1,7 +1,7 @@
 const playerCard = {
   title: 'Williams Lendjoungou',
   subtitle: 'Elite Build Profile',
-  image: '/assets/images/player.jpg',
+  image: '/assets/images/player-v2.jpg',
   imageAlt: 'Williams portrait',
   rating: 96,
   position: 'FS DEV',

@@ -36,7 +36,8 @@ body.about-route {
   font-size: 1.8rem;
   line-height: 1.58;
   max-width: 86%;
-  font-family: "HackbotFreeTrial";
+  font-family: "ByteBounce", "HackbotFreeTrial", "Courier New", monospace;
+  letter-spacing: 0.045em;
 }
 
 .about-tags {
@@ -84,7 +85,8 @@ body.about-route {
     font-size: 1.23rem;
     line-height: 1.52;
     min-width: 0;
-    font-family: "HackbotFreeTrial";
+    font-family: "ByteBounce", "HackbotFreeTrial", "Courier New", monospace;
+    letter-spacing: 0.03em;
     opacity: 1;
     animation: none;
   }

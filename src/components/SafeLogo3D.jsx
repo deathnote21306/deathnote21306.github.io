@@ -61,6 +61,7 @@ export default function SafeLogo3D() {
   const [has3DError, setHas3DError] = useState(false)
   const [is3DReady, setIs3DReady] = useState(false)
   const [isLiteMode, setIsLiteMode] = useState(false)
+  const [modelPath, setModelPath] = useState('/models/logo.gltf')
 
   useEffect(() => {
     const supports3D = hasWebGLSupport()
@@ -73,14 +74,28 @@ export default function SafeLogo3D() {
   }, [])
 
   useEffect(() => {
-    if (!canRender3D || has3DError || is3DReady) return undefined
+    let cancelled = false
 
-    const safetyTimer = setTimeout(() => {
-      setHas3DError(true)
-    }, 9000)
+    const pickBestModel = async () => {
+      try {
+        const response = await fetch('/models/logo-optimized.glb', { method: 'HEAD', cache: 'no-store' })
+        if (!cancelled && response.ok) {
+          setModelPath('/models/logo-optimized.glb')
+        }
+      } catch (error) {
+        // Keep default .gltf if optimized asset is not available.
+      }
+    }
 
-    return () => clearTimeout(safetyTimer)
-  }, [canRender3D, has3DError, is3DReady])
+    pickBestModel()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  // Do not force-fail slow 3D loads. Large models (especially on mobile)
+  // can take longer than a fixed timeout to parse; keep loading fallback visible
+  // and only switch to static fallback on real runtime errors/context loss.
 
   const showLoadingFallback = canRender3D && !has3DError && !is3DReady
   const showStaticFallback = !canRender3D || has3DError
@@ -105,6 +120,7 @@ export default function SafeLogo3D() {
       <Logo3DErrorBoundary onError={() => setHas3DError(true)}>
         <Logo3D
           liteMode={isLiteMode}
+          modelPath={modelPath}
           onReady={() => setIs3DReady(true)}
           onContextLost={() => setHas3DError(true)}
         />

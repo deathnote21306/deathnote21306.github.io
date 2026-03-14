@@ -4,9 +4,9 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
-function LogoModel({ onReady }) {
+function LogoModel({ onReady, modelPath }) {
   const spin = useRef();
-  const { scene } = useGLTF("/models/logo.gltf");
+  const { scene } = useGLTF(modelPath);
 
   const cloned = useMemo(() => {
     const c = scene.clone(true);
@@ -59,7 +59,7 @@ function LogoModel({ onReady }) {
   );
 }
 
-export default function Logo3D({ onReady, onContextLost, liteMode = false }) {
+export default function Logo3D({ onReady, onContextLost, liteMode = false, modelPath = '/models/logo.gltf' }) {
   // Render directly into document.body, completely outside
   // the .container div and all its broken stacking contexts
   return createPortal(
@@ -102,7 +102,7 @@ export default function Logo3D({ onReady, onContextLost, liteMode = false }) {
         <directionalLight position={[2, 2, 2]} intensity={liteMode ? 0.95 : 1.2} />
         <Suspense fallback={null}>
           <Environment preset="studio" />
-          <LogoModel onReady={onReady} />
+          <LogoModel onReady={onReady} modelPath={modelPath} />
         </Suspense>
       </Canvas>
     </div>,
@@ -110,4 +110,5 @@ export default function Logo3D({ onReady, onContextLost, liteMode = false }) {
   );
 }
 
-useGLTF.preload("/models/logo.gltf");
+useGLTF.preload('/models/logo.gltf');
+useGLTF.preload('/models/logo-optimized.glb');
