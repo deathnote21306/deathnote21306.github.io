@@ -4,13 +4,42 @@
   position: relative;
 }
 
+.cv-snapshot__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+}
+
 .cv-snapshot__kicker {
-  margin: 0 0 1.2rem;
+  margin: 0;
   color: rgba(168, 245, 208, 0.78);
   font-family: "Coolvetica";
   font-size: 1.1rem;
   letter-spacing: 0.18rem;
   text-transform: uppercase;
+}
+
+.cv-snapshot__download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid rgba(168, 245, 208, 0.45);
+  border-radius: 6px;
+  background: rgba(168, 245, 208, 0.06);
+  color: rgba(168, 245, 208, 0.9);
+  font-size: 0.85rem;
+  letter-spacing: 0.05rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: rgba(168, 245, 208, 0.14);
+    border-color: rgba(168, 245, 208, 0.8);
+  }
 }
 
 /* ─── Bento grid ───────────────────────────────────────────────── */

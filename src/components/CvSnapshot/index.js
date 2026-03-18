@@ -4,7 +4,17 @@ import './index.scss'
 const CvSnapshot = () => {
   return (
     <section className="cv-snapshot" aria-label="CV snapshot">
-      <p className="cv-snapshot__kicker">{cvSnapshot.subtitle}</p>
+      <div className="cv-snapshot__header-row">
+        <p className="cv-snapshot__kicker">{cvSnapshot.subtitle}</p>
+        <a
+          className="cv-snapshot__download-btn"
+          href="/Williams_Lendjoungou_Resume.pdf"
+          download="Williams_Lendjoungou_Resume.pdf"
+          aria-label="Download CV as PDF"
+        >
+          ↓ Download CV
+        </a>
+      </div>
 
       <div className="cv-snapshot__bento">
 

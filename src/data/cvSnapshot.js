@@ -2,6 +2,18 @@ const cvSnapshot = {
   subtitle: 'Fast scan // software profile',
   experience: [
     {
+      role: 'Software Engineer Intern',
+      company: 'CraftyCrib.com',
+      location: 'Montréal, QC',
+      period: 'Nov 2025 – Ongoing',
+      stack: ['React', 'Node.js', 'Python', 'REST APIs'],
+      bullets: [
+        'Building and maintaining full-stack features for a real estate platform serving Canadian renters and landlords.',
+        'Collaborating in an agile team to ship product improvements across the frontend (React) and backend (Node.js/Python) codebases.',
+      ],
+      metrics: [],
+    },
+    {
       role: 'Software Engineer',
       company: 'Cita MarketPlace',
       location: 'Montréal, QC',
@@ -70,8 +82,21 @@ const cvSnapshot = {
       bullet:
         'Interactive iOS educational platform enabling learners to understand neural networks through hands-on visual modules; submitted to the Apple Swift Student Challenge 2026.',
     },
+    {
+      title: 'ML Spam Classifier — Spambase Dataset',
+      stack: ['Python', 'scikit-learn', 'NumPy', 'pandas'],
+      bullet:
+        'Trained and evaluated multiple supervised classifiers (Logistic Regression, SVM, Random Forest) on the UCI Spambase dataset, achieving >97% accuracy with optimized feature selection and cross-validation.',
+    },
   ],
   leadership: [
+    {
+      title: 'Claude Builder Club — McGill University',
+      period: '2025 – Ongoing',
+      stack: ['Claude API', 'OpenAI API', 'Python'],
+      bullet:
+        'Active member of McGill\'s Claude Builder Club, building AI-powered projects and collaborating with peers to explore applied LLM development using the Anthropic Claude and OpenAI APIs.',
+    },
     {
       title: 'McGill Hackathon — 4th Place (~40+ Teams)',
       period: 'Nov 2025',
@@ -91,7 +116,7 @@ const cvSnapshot = {
     Languages: ['Java', 'Python', 'JavaScript', 'Swift', 'C', 'C++', 'SQL', 'HTML5', 'CSS', 'MATLAB'],
     Frameworks: ['Spring Boot', 'ReactJS', 'Vue.js', 'Node.js', 'FastAPI', 'LangChain'],
     'ML / Data': ['scikit-learn', 'NumPy', 'RAG', 'A/B Testing', 'Recommendation Systems'],
-    'Tools & DB': ['Git', 'PostgreSQL', 'REST APIs', 'n8n', 'Excel', 'Canva', 'Photoshop'],
+    'Tools & DB': ['Git', 'PostgreSQL', 'REST APIs', 'n8n', 'OpenAI API', 'Excel', 'Canva', 'Photoshop'],
     'Spoken Languages': ['French (fluent)', 'English (fluent)', 'Spanish (intermediate)'],
   },
   education: [
