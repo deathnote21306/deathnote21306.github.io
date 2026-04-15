@@ -5,6 +5,7 @@ import pdfRagUiCover from '../assets/images/pdf-rag-ui-cover.png'
 import robotDesignCover from '../assets/images/robot-design-cover.png'
 import linearRegressionCover from '../assets/images/linear-regression-illustration.svg'
 import n8nLogo from '../assets/images/n8n-logo.svg'
+import studyquestCover from '../assets/images/studyquest-cover.png'
 
 const projects = [
   {
@@ -51,6 +52,15 @@ const projects = [
   },
   {
     id: 5,
+    slug: 'studyquest',
+    title: 'StudyQuest',
+    description:
+      'A mobile-first, MMORPG-styled academic engagement app. Turns studying, attending class, and sharing notes into a game with XP, rank tiers, and a 3D progression map. Built in React Native with Expo, a Babylon.js 3D map, Supabase Edge Functions, and Claude as the AI tutor.',
+    stack: ['React Native', 'Expo', 'Babylon.js', 'Supabase', 'Claude API'],
+    coverImage: studyquestCover,
+  },
+  {
+    id: 6,
     slug: 'mcgill-hackathon-voice-assistant',
     title: 'McGill Hackathon Voice Assistant',
     description: 'Built an AI voice assistant for appointment booking by integrating an LLM API with n8n workflows, achieving around 90% task completion and 4th place out of about 40 teams.',

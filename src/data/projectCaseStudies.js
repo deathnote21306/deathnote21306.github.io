@@ -2,6 +2,9 @@ import projects from './projects'
 import neuralSpellbookCover from '../assets/images/neuralspellbook-cover.png'
 import neuralSpellbookSpellFails from '../assets/images/neuralspellbook-spell-fails.png'
 import neuralSpellbookTraining from '../assets/images/neuralspellbook-training.png'
+import studyquestCover from '../assets/images/studyquest-cover.png'
+import studyquestOnboarding from '../assets/images/studyquest-onboarding.png'
+import studyquestMascot from '../assets/images/studyquest-mascot.png'
 
 const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]))
 
@@ -589,6 +592,158 @@ const projectCaseStudies = [
       'Add calendar conflict detection and proactive alternative-slot suggestions.',
       'Integrate voice biometrics or auth tokens for secure personalized actions.',
       'Expand multi-language support with locale-aware prompt templates.',
+    ],
+  }),
+  buildCaseStudy({
+    slug: 'studyquest',
+    decorative: 'stream-matrix',
+    githubUrl: 'https://github.com/theaboy/cracked-quest',
+    heroParagraph:
+      'StudyQuest (codenamed GetCracked) is a mobile-first academic engagement platform that treats a university semester like a game campaign. Each course is a map. Each exam is a boss. Lectures, study sessions, and note contributions earn XP that feeds a visible social rank — Student, Grinder, Scholar, Veteran, Elite, Legend — which resets every semester. The app is a React Native + Expo build with a Babylon.js 3D progression map, Supabase handling auth, storage, and Postgres, and Claude powering the AI tutor and on-device quiz generation through Supabase Edge Functions. Every Claude call is brokered server-side so API keys never leave the backend, and every XP mutation is server-awarded so progression cannot be forged from the client. The product thesis: students are already gamers, so stop fighting that instinct and turn the right behavior into the score.',
+    metrics: [
+      { label: 'Phase 1 Target', value: 'McGill' },
+      { label: 'Core Pillars', value: '3' },
+      { label: 'XP Actions Tracked', value: '9+' },
+      { label: 'AI Provider', value: 'Claude' },
+    ],
+    problem: {
+      statement:
+        'Students fight billion-dollar attention algorithms with willpower alone, academic effort is invisible until grades arrive, and course knowledge lives in scattered group chats. Traditional study apps bolt points onto productivity and still feel like homework.',
+      audience:
+        'University students aged 17–25 enrolled in structured programs with exams — initial rollout targets McGill, with a design that extends to any campus.',
+      impact:
+        'A game-first experience replaces willpower with engagement loops. Effort becomes socially visible, resources pool by course, and the gameplay is what keeps students coming back — with studying as the side effect.',
+    },
+    features: [
+      {
+        title: 'Study Mode — Focus and Deep',
+        bullets: [
+          'Focus Mode: timer sessions with quiz checkpoints pulled from real course material as intelligent friction.',
+          'Deep Mode: OS-level distraction blocking via iOS Screen Time and Android Accessibility Service.',
+          'AI Tutor powered by Claude, pre-loaded with course context, pushes back and asks follow-ups instead of giving answers.',
+        ],
+      },
+      {
+        title: 'The Rank — social reputation for effort',
+        bullets: [
+          'XP awarded for verified attendance (+50), study sessions (+30), quiz checkpoints (+10), mastery checks (+40), and more.',
+          'Six-tier rank progression — Student → Grinder → Scholar → Veteran → Elite → Legend — resets every semester.',
+          'Leaderboards scoped by course, campus, and friend group so competition stays relevant.',
+        ],
+      },
+      {
+        title: 'The Commons — course-specific knowledge pool',
+        bullets: [
+          'Upload lecture notes, past exams, and study guides tagged by course and topic.',
+          'Top contributors earn XP plus social credibility; downloads award passive XP to uploaders.',
+          'Study group formation and campus event discovery sit inside the same course surface.',
+        ],
+      },
+      {
+        title: '3D Progression Map',
+        bullets: [
+          'Babylon.js native renderer (@babylonjs/react-native) powers an MMORPG-style map per course.',
+          'Topics render as map nodes, progress lights the path, and the current exam sits as the endpoint boss.',
+          'Requires Expo prebuild — the map is unavailable in Expo Go by design.',
+        ],
+      },
+    ],
+    architecture: [
+      {
+        label: 'Mobile Client',
+        detail:
+          'React Native 0.81 + Expo SDK 54 with the New Architecture enabled, Expo Router v6 for file-based navigation, NativeWind for Tailwind-style styling, and Zustand v5 for app state.',
+      },
+      {
+        label: 'Backend',
+        detail:
+          'Supabase provides Postgres, Auth, Storage, and Realtime from a single backend. All schema, RLS policies, and triggers live in the repo under supabase/.',
+      },
+      {
+        label: 'AI Gateway',
+        detail:
+          'Supabase Edge Functions (Deno runtime) broker every Claude call — breakdown, quiz-gen, flashcards — so the client never holds the Anthropic key.',
+      },
+      {
+        label: 'Progression Integrity',
+        detail:
+          'A dedicated award_xp Edge Function is the only path that can write XP. Client-side progression events are signals; the server is the source of truth.',
+      },
+    ],
+    architectureFlow: [
+      'Student opens the app and authenticates through Supabase Auth',
+      'Courses and the Progress Map render from Postgres with realtime subscriptions',
+      'User starts a Focus or Deep session — OS-level distraction blockers engage',
+      'Quiz checkpoints request fresh questions from the quiz-gen Edge Function',
+      'Edge Function calls Claude server-side and returns structured question payloads',
+      'Session completion triggers the award_xp Edge Function to update rank server-side',
+      'Leaderboards and the 3D map re-render with the new progression state',
+    ],
+    implementation: {
+      backend: [
+        'Supabase Postgres schema models users, courses, topics, sessions, uploads, and XP events with row-level security policies keeping data course-scoped.',
+        'Edge Functions written in TypeScript/Deno handle AI orchestration, XP awards, and upload processing — no AI keys ever touch the client.',
+      ],
+      frontend: [
+        'Expo Router v6 file-based routing splits the app into (auth), (tabs), and map/[courseId] — keeping navigation legible as features compound.',
+        'NativeWind v4 provides Tailwind ergonomics inside React Native; a shared lib/theme.ts pins the dark, neon, game-first design tokens.',
+      ],
+      ai: [
+        'Claude (claude-sonnet-4) powers three Edge Functions: breakdown (assignment → day-by-day plan), quiz-gen (lecture → checkpoint questions), flashcards (notes → spaced-repetition deck).',
+        'The AI Tutor is prompt-engineered to push back and ask follow-ups — it refuses to simply hand over answers, which is what makes it a tutor instead of a homework-doer.',
+      ],
+      optimization: [
+        'Babylon.js renders natively on-device through @babylonjs/react-native; the Expo New Architecture is required for the bridgeless JSI calls it depends on.',
+        'Client caches per-course map state in Zustand so navigating between courses does not re-initialize the 3D scene unnecessarily.',
+      ],
+    },
+    challenges: [
+      {
+        challenge:
+          'Keeping XP progression un-forgeable when the client is the one observing study behavior.',
+        solution:
+          'Made the server the only authority on XP. The client emits a structured event describing what happened; the award_xp Edge Function validates, applies rate limits, and writes. No client-side XP write path exists.',
+      },
+      {
+        challenge:
+          'Integrating Babylon.js 3D rendering inside an Expo/React Native app without ejecting to a bare workflow.',
+        solution:
+          'Adopted Expo prebuild + New Architecture + @babylonjs/react-native. The map is opted out of Expo Go so dev iteration stays fast for everything except the 3D surface, where we build once with run:ios / run:android.',
+      },
+      {
+        challenge:
+          'Shipping an AI Tutor that actually teaches instead of just answering.',
+        solution:
+          'Prompt design forbids direct solutions. The tutor re-derives the question in its own words, asks what the student has already tried, and scaffolds toward the answer one step at a time — with course context baked in so hints stay relevant.',
+      },
+    ],
+    resultNotes: [
+      'Branded product "GetCracked" with full design system in place — Crack the mascot, dark/neon palette, custom typography, pill buttons.',
+      'Phase 1 feature set scoped for McGill with a clear Phase 2 (portal OAuth, verified attendance) and Phase 3 (teacher dashboards, multi-campus) roadmap.',
+      'Architecture is production-shaped from day one — server-authoritative XP, RLS policies, Edge Function key isolation — not a prototype that has to be rebuilt to ship.',
+    ],
+    resultVisuals: [
+      {
+        title: 'Landing — "Study. Rank. Get Cracked."',
+        caption: 'Splash screen with Crack, the graduation-capped slime mascot, and the two primary CTAs.',
+        image: studyquestCover,
+      },
+      {
+        title: 'Onboarding — Start with what stresses you',
+        caption: 'Conversational onboarding flow inspired by Duolingo; Crack drives the course-setup step.',
+        image: studyquestOnboarding,
+      },
+      {
+        title: 'Crack the Mascot',
+        caption: 'A purple slime in a graduation cap. Appears throughout onboarding, Deep Mode, and key reward moments.',
+        image: studyquestMascot,
+      },
+    ],
+    future: [
+      'University-portal OAuth integration so course schedules, grades, and attendance sync automatically.',
+      'Study-group matchmaking inside The Commons, scored by rank tier and course overlap.',
+      'Teacher dashboards that surface aggregate engagement without exposing individual student data.',
+      'Multi-university expansion with cross-campus leaderboards and federated course pools.',
     ],
   }),
 ].filter(Boolean)
