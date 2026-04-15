@@ -599,12 +599,12 @@ const projectCaseStudies = [
     decorative: 'stream-matrix',
     githubUrl: 'https://github.com/theaboy/cracked-quest',
     heroParagraph:
-      'StudyQuest (codenamed GetCracked) is a mobile-first academic engagement platform that treats a university semester like a game campaign. Each course is a map. Each exam is a boss. Lectures, study sessions, and note contributions earn XP that feeds a visible social rank — Student, Grinder, Scholar, Veteran, Elite, Legend — which resets every semester. The app is a React Native + Expo build with a Babylon.js 3D progression map, Supabase handling auth, storage, and Postgres, and Claude powering the AI tutor and on-device quiz generation through Supabase Edge Functions. Every Claude call is brokered server-side so API keys never leave the backend, and every XP mutation is server-awarded so progression cannot be forged from the client. The product thesis: students are already gamers, so stop fighting that instinct and turn the right behavior into the score.',
+      'StudyQuest (codenamed GetCracked) is a mobile-first academic engagement platform that treats a university semester like a game campaign. Each course is a map. Each exam is a boss. Lectures, study sessions, and note contributions earn XP that feeds a visible social rank — Student, Grinder, Scholar, Veteran, Elite, Legend — which resets every semester. The app is a React Native + Expo build with a Babylon.js 3D progression map, Supabase handling auth, storage, and Postgres, and an LLM powering the AI tutor and on-device quiz generation through Supabase Edge Functions. Every model call is brokered server-side so API keys never leave the backend, and every XP mutation is server-awarded so progression cannot be forged from the client. The product thesis: students are already gamers, so stop fighting that instinct and turn the right behavior into the score.',
     metrics: [
       { label: 'Phase 1 Target', value: 'McGill' },
       { label: 'Core Pillars', value: '3' },
       { label: 'XP Actions Tracked', value: '9+' },
-      { label: 'AI Provider', value: 'Claude' },
+      { label: 'AI Layer', value: 'LLM + Edge' },
     ],
     problem: {
       statement:
@@ -620,7 +620,7 @@ const projectCaseStudies = [
         bullets: [
           'Focus Mode: timer sessions with quiz checkpoints pulled from real course material as intelligent friction.',
           'Deep Mode: OS-level distraction blocking via iOS Screen Time and Android Accessibility Service.',
-          'AI Tutor powered by Claude, pre-loaded with course context, pushes back and asks follow-ups instead of giving answers.',
+          'AI Tutor powered by an LLM, pre-loaded with course context, pushes back and asks follow-ups instead of giving answers.',
         ],
       },
       {
@@ -662,7 +662,7 @@ const projectCaseStudies = [
       {
         label: 'AI Gateway',
         detail:
-          'Supabase Edge Functions (Deno runtime) broker every Claude call — breakdown, quiz-gen, flashcards — so the client never holds the Anthropic key.',
+          'Supabase Edge Functions (Deno runtime) broker every LLM call — breakdown, quiz-gen, flashcards — so the client never holds the provider key.',
       },
       {
         label: 'Progression Integrity',
@@ -675,7 +675,7 @@ const projectCaseStudies = [
       'Courses and the Progress Map render from Postgres with realtime subscriptions',
       'User starts a Focus or Deep session — OS-level distraction blockers engage',
       'Quiz checkpoints request fresh questions from the quiz-gen Edge Function',
-      'Edge Function calls Claude server-side and returns structured question payloads',
+      'Edge Function calls the LLM server-side and returns structured question payloads',
       'Session completion triggers the award_xp Edge Function to update rank server-side',
       'Leaderboards and the 3D map re-render with the new progression state',
     ],
@@ -689,7 +689,7 @@ const projectCaseStudies = [
         'NativeWind v4 provides Tailwind ergonomics inside React Native; a shared lib/theme.ts pins the dark, neon, game-first design tokens.',
       ],
       ai: [
-        'Claude (claude-sonnet-4) powers three Edge Functions: breakdown (assignment → day-by-day plan), quiz-gen (lecture → checkpoint questions), flashcards (notes → spaced-repetition deck).',
+        'A modern reasoning LLM powers three Edge Functions: breakdown (assignment → day-by-day plan), quiz-gen (lecture → checkpoint questions), flashcards (notes → spaced-repetition deck).',
         'The AI Tutor is prompt-engineered to push back and ask follow-ups — it refuses to simply hand over answers, which is what makes it a tutor instead of a homework-doer.',
       ],
       optimization: [

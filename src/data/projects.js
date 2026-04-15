@@ -55,8 +55,8 @@ const projects = [
     slug: 'studyquest',
     title: 'StudyQuest',
     description:
-      'A mobile-first, MMORPG-styled academic engagement app. Turns studying, attending class, and sharing notes into a game with XP, rank tiers, and a 3D progression map. Built in React Native with Expo, a Babylon.js 3D map, Supabase Edge Functions, and Claude as the AI tutor.',
-    stack: ['React Native', 'Expo', 'Babylon.js', 'Supabase', 'Claude API'],
+      'A mobile-first, MMORPG-styled academic engagement app. Turns studying, attending class, and sharing notes into a game with XP, rank tiers, and a 3D progression map. Built in React Native with Expo, a Babylon.js 3D map, Supabase Edge Functions, and an LLM-powered AI tutor.',
+    stack: ['React Native', 'Expo', 'Babylon.js', 'Supabase', 'LLM'],
     coverImage: studyquestCover,
   },
   {
