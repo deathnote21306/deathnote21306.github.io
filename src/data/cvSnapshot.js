@@ -4,25 +4,24 @@ const cvSnapshot = {
     {
       role: 'Software Engineer Intern',
       company: 'CraftyCrib.com',
-      location: 'Montréal, QC',
-      period: 'Nov 2025 – Ongoing',
-      stack: ['React', 'Node.js', 'Python', 'REST APIs'],
+      location: 'Remote',
+      period: 'Nov 2025 – Present',
+      stack: ['Python', 'OpenAI API', 'Prompt Engineering', 'Guardrails'],
       bullets: [
-        'Building and maintaining full-stack features for a real estate platform serving Canadian renters and landlords.',
-        'Collaborating in an agile team to ship product improvements across the frontend (React) and backend (Node.js/Python) codebases.',
+        'Architected and deployed an AI chatbot (OpenAI API, custom prompt engineering) reaching 1,000+ users and cutting onboarding from ~10 min to ~2 min (~90% reduction) at <400ms inference latency.',
+        'Built evaluation pipelines with guardrails and structured output validation to detect failure modes and ensure reliable model behavior.',
       ],
-      metrics: [],
+      metrics: ['1,000+ users', '−90% onboarding', '<400ms latency'],
     },
     {
       role: 'Software Engineer',
       company: 'Cita MarketPlace',
       location: 'Montréal, QC',
       period: 'Apr – Aug 2025',
-      stack: ['Python', 'scikit-learn', 'REST APIs', 'A/B Testing'],
+      stack: ['Python', 'scikit-learn', 'ML Inference APIs', 'A/B Testing'],
       bullets: [
-        'Improved platform engagement by 18% by deploying a recommendation system in Python (scikit-learn) and integrating real-time inference APIs into production.',
-        'Reduced content load latency by 25% through optimized video ranking and retrieval pipelines.',
-        'Increased conversions by 12% by implementing an AI-driven ranking system validated with A/B testing.',
+        'Improved platform engagement by 18% by training and deploying a Python recommendation model (scikit-learn) with real-time ML inference APIs in production.',
+        'Reduced latency by 25% via an offline training / online inference architecture (batch model training and embedding precomputation off the request path, lightweight online inference in production) and increased conversions by 12% through an A/B-tested AI ranking model.',
       ],
       metrics: ['+18% engagement', '−25% latency', '+12% conversions'],
     },
@@ -65,10 +64,10 @@ const cvSnapshot = {
   ],
   projects: [
     {
-      title: 'AI Chatbot',
-      stack: ['FastAPI', 'LangChain', 'Python'],
+      title: 'AI Chatbot — RAG System',
+      stack: ['Python', 'FastAPI', 'LangChain', 'RAG', 'Vector DB'],
       bullet:
-        'Built a RAG-based AI chatbot using Python and FastAPI, enabling accurate, context-aware responses through semantic search over embedded documents with scalable REST API design.',
+        'Engineered a RAG system (chunking, vector embedding, semantic retrieval, prompt chaining with guardrails) enabling 50+ users to query 50+ 20-page PDFs concurrently with context-aware responses.',
     },
     {
       title: 'Royal Canada Airline — Flight Management System',
@@ -83,10 +82,10 @@ const cvSnapshot = {
         'Interactive iOS educational platform enabling learners to understand neural networks through hands-on visual modules; submitted to the Apple Swift Student Challenge 2026.',
     },
     {
-      title: 'ML Spam Classifier — Spambase Dataset',
-      stack: ['Python', 'scikit-learn', 'NumPy', 'pandas'],
+      title: 'ML Spam Classifier — From-Scratch Implementation',
+      stack: ['Python', 'NumPy', 'Pandas', 'scikit-learn'],
       bullet:
-        'Trained and evaluated multiple supervised classifiers (Logistic Regression, SVM, Random Forest) on the UCI Spambase dataset, achieving >97% accuracy with optimized feature selection and cross-validation.',
+        'Implemented logistic regression from scratch with mini-batch SGD, L2 regularization, and hyperparameter tuning; achieved 93.82% accuracy via 5-fold cross-validation on 4,601 samples.',
     },
   ],
   leadership: [

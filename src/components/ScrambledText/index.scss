@@ -1,0 +1,18 @@
+/* ─── Scrambled Text ─────────────────────────────────────────────
+   Ported from 21st.dev Raining Letters demo. The `.dud` span is
+   rendered for every position in the scramble window — color it
+   green to match the reference, keep opacity slightly reduced so
+   the locked-in target characters still read as primary.
+*/
+
+.scrambled-text {
+  font-family: "Coolvetica", "SF Mono", Menlo, monospace;
+  line-height: 1.08;
+  letter-spacing: 0.02em;
+
+  .dud {
+    color: #00ff7b;
+    opacity: 0.7;
+    text-shadow: 0 0 6px rgba(0, 255, 123, 0.35);
+  }
+}

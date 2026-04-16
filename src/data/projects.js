@@ -20,7 +20,7 @@ const projects = [
   {
     id: 1,
     slug: 'ai-chatbot-fastapi',
-    title: 'AI-Chatbot Assistant',
+    title: 'AI Chatbot — RAG System',
     description: 'Built an AI chatbot using Python and FastAPI with retrieval-augmented generation, semantic search over embedded documents, and real-time response synthesis.',
     stack: ['Python', 'FastAPI', 'LangChain', 'RAG'],
     coverImage: pdfRagUiCover,
@@ -53,7 +53,7 @@ const projects = [
   {
     id: 5,
     slug: 'studyquest',
-    title: 'StudyQuest',
+    title: 'GetCracked — Anthropic x McGill Hackathon',
     description:
       'A mobile-first, MMORPG-styled academic engagement app. Turns studying, attending class, and sharing notes into a game with XP, rank tiers, and a 3D progression map. Built in React Native with Expo, a Babylon.js 3D map, Supabase Edge Functions, and an LLM-powered AI tutor.',
     stack: ['React Native', 'Expo', 'Babylon.js', 'Supabase', 'LLM'],
@@ -62,7 +62,7 @@ const projects = [
   {
     id: 6,
     slug: 'mcgill-hackathon-voice-assistant',
-    title: 'McGill Hackathon Voice Assistant',
+    title: 'UTalk — NBC x McHacks — 4th Place (~40+ Teams)',
     description: 'Built an AI voice assistant for appointment booking by integrating an LLM API with n8n workflows, achieving around 90% task completion and 4th place out of about 40 teams.',
     stack: ['LLM API', 'n8n', 'Automation', 'Hackathon'],
     coverImage: n8nLogo,

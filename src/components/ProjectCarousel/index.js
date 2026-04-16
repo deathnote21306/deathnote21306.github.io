@@ -84,11 +84,6 @@ const ProjectCarousel = () => {
         role="region"
         tabIndex={0}
         aria-label="Featured projects carousel"
-        onWheel={(event) => {
-          event.preventDefault()
-          if (event.deltaY > 0) nextProject()
-          else prevProject()
-        }}
         onKeyDown={(event) => {
           if (event.key === 'ArrowLeft') prevProject()
           if (event.key === 'ArrowRight') nextProject()

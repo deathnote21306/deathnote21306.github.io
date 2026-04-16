@@ -4,8 +4,12 @@ import './index.scss'
 const CvSnapshot = () => {
   return (
     <section className="cv-snapshot" aria-label="CV snapshot">
-      <div className="cv-snapshot__header-row">
-        <p className="cv-snapshot__kicker">{cvSnapshot.subtitle}</p>
+      {/* ── Header ── */}
+      <header className="cv-snapshot__header">
+        <div className="cv-snapshot__title-block">
+          <h3 className="cv-snapshot__title">CV Snapshot</h3>
+          <p className="cv-snapshot__subtitle">Visual Timeline</p>
+        </div>
         <a
           className="cv-snapshot__download-btn"
           href="/Williams_Lendjoungou_Resume.pdf"
@@ -14,33 +18,47 @@ const CvSnapshot = () => {
         >
           ↓ Download CV
         </a>
-      </div>
+      </header>
 
-      <div className="cv-snapshot__bento">
+      {/* ── Experience timeline ── */}
+      <article
+        className="cv-snapshot__timeline-wrapper"
+        aria-labelledby="cv-exp-heading"
+      >
+        <h4 id="cv-exp-heading" className="cv-snapshot__sr-only">Experience</h4>
+        <ol className="cv-snapshot__timeline">
+          {cvSnapshot.experience.map((item, idx) => (
+            <li
+              key={`${item.company}-${item.role}-${idx}`}
+              className="cv-snapshot__node"
+            >
+              <div className="cv-snapshot__node-capsule">
+                <span className="cv-snapshot__node-role">{item.role}</span>
+                {item.company && (
+                  <span className="cv-snapshot__node-company">
+                    <span className="cv-snapshot__node-at">@</span>
+                    {item.company}
+                  </span>
+                )}
+              </div>
 
-        {/* ── Experience ── */}
-        <article
-          className="cv-snapshot__block cv-snapshot__block--experience"
-          aria-labelledby="cv-exp-heading"
-        >
-          <h4 id="cv-exp-heading" className="cv-snapshot__block-title">Experience</h4>
-          <ul className="cv-snapshot__timeline">
-            {cvSnapshot.experience.map((item) => (
-              <li key={`${item.company}-${item.role}`} className="cv-snapshot__job">
-                <div className="cv-snapshot__job-header">
-                  <div className="cv-snapshot__job-meta">
-                    <strong className="cv-snapshot__job-role">{item.role}</strong>
-                    <span className="cv-snapshot__job-company">
-                      {item.company} · {item.location}
-                    </span>
-                  </div>
-                  <span className="cv-snapshot__job-period">{item.period}</span>
+              <div className="cv-snapshot__node-body">
+                <div className="cv-snapshot__node-meta">
+                  <span className="cv-snapshot__node-period">{item.period}</span>
+                  {item.location && (
+                    <span className="cv-snapshot__node-location">{item.location}</span>
+                  )}
                 </div>
 
-                {item.metrics.length > 0 && (
-                  <div className="cv-snapshot__metrics" aria-label="Impact metrics">
+                {item.metrics?.length > 0 && (
+                  <div
+                    className="cv-snapshot__metrics"
+                    aria-label="Impact metrics"
+                  >
                     {item.metrics.map((m) => (
-                      <span key={m} className="cv-snapshot__metric-pill">{m}</span>
+                      <span key={m} className="cv-snapshot__metric-pill">
+                        {m}
+                      </span>
                     ))}
                   </div>
                 )}
@@ -51,64 +69,25 @@ const CvSnapshot = () => {
                   ))}
                 </ul>
 
-                {item.stack.length > 0 && (
+                {item.stack?.length > 0 && (
                   <div className="cv-snapshot__chips" aria-label="Tech stack">
                     {item.stack.map((s) => (
-                      <span key={s} className="cv-snapshot__chip">{s}</span>
+                      <span key={s} className="cv-snapshot__chip">
+                        {s}
+                      </span>
                     ))}
                   </div>
                 )}
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        {/* ── Skills ── */}
-        <article
-          className="cv-snapshot__block cv-snapshot__block--skills"
-          aria-labelledby="cv-skills-heading"
-        >
-          <h4 id="cv-skills-heading" className="cv-snapshot__block-title">Skills</h4>
-          <div className="cv-snapshot__skill-groups">
-            {Object.entries(cvSnapshot.skills).map(([group, values]) => (
-              <div key={group} className="cv-snapshot__skill-group">
-                <h5 className="cv-snapshot__skill-label">{group}</h5>
-                <div className="cv-snapshot__chips">
-                  {values.map((v) => (
-                    <span key={v} className="cv-snapshot__chip">{v}</span>
-                  ))}
-                </div>
               </div>
-            ))}
-          </div>
-        </article>
+            </li>
+          ))}
+        </ol>
+      </article>
 
-        {/* ── Projects ── */}
+      {/* ── Education + Leadership split ── */}
+      <div className="cv-snapshot__split">
         <article
-          className="cv-snapshot__block cv-snapshot__block--projects"
-          aria-labelledby="cv-proj-heading"
-        >
-          <h4 id="cv-proj-heading" className="cv-snapshot__block-title">Projects</h4>
-          <ul className="cv-snapshot__project-list">
-            {cvSnapshot.projects.map((p) => (
-              <li key={p.title} className="cv-snapshot__project">
-                <div className="cv-snapshot__project-header">
-                  <strong className="cv-snapshot__project-title">{p.title}</strong>
-                  <div className="cv-snapshot__chips" aria-label="Tech stack">
-                    {p.stack.map((s) => (
-                      <span key={s} className="cv-snapshot__chip cv-snapshot__chip--accent">{s}</span>
-                    ))}
-                  </div>
-                </div>
-                <p className="cv-snapshot__project-bullet">{p.bullet}</p>
-              </li>
-            ))}
-          </ul>
-        </article>
-
-        {/* ── Education & Leadership ── */}
-        <article
-          className="cv-snapshot__block cv-snapshot__block--edu-lead"
+          className="cv-snapshot__block"
           aria-labelledby="cv-edu-heading"
         >
           <h4 id="cv-edu-heading" className="cv-snapshot__block-title">Education</h4>
@@ -120,18 +99,31 @@ const CvSnapshot = () => {
                   <span className="cv-snapshot__edu-period">{e.period}</span>
                 </div>
                 <span className="cv-snapshot__edu-degree">
-                  {e.degree}{e.minor ? ` · ${e.minor}` : ''}
+                  {e.degree}
+                  {e.minor ? ` · ${e.minor}` : ''}
                 </span>
-                <div className="cv-snapshot__chips cv-snapshot__chips--tight">
-                  {e.highlights.map((h) => (
-                    <span key={h} className="cv-snapshot__chip cv-snapshot__chip--highlight">{h}</span>
-                  ))}
-                </div>
+                {e.highlights?.length > 0 && (
+                  <div className="cv-snapshot__chips cv-snapshot__chips--tight">
+                    {e.highlights.map((h) => (
+                      <span
+                        key={h}
+                        className="cv-snapshot__chip cv-snapshot__chip--highlight"
+                      >
+                        {h}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
+        </article>
 
-          <h4 className="cv-snapshot__block-title cv-snapshot__block-title--sub">Leadership</h4>
+        <article
+          className="cv-snapshot__block"
+          aria-labelledby="cv-lead-heading"
+        >
+          <h4 id="cv-lead-heading" className="cv-snapshot__block-title">Leadership</h4>
           <ul className="cv-snapshot__lead-list">
             {cvSnapshot.leadership.map((l) => (
               <li key={l.title} className="cv-snapshot__lead-item">
@@ -139,17 +131,20 @@ const CvSnapshot = () => {
                   <strong className="cv-snapshot__lead-title">{l.title}</strong>
                   <span className="cv-snapshot__edu-period">{l.period}</span>
                 </div>
-                <div className="cv-snapshot__chips">
-                  {l.stack.map((s) => (
-                    <span key={s} className="cv-snapshot__chip">{s}</span>
-                  ))}
-                </div>
-                <p className="cv-snapshot__project-bullet">{l.bullet}</p>
+                <p className="cv-snapshot__lead-bullet">{l.bullet}</p>
+                {l.stack?.length > 0 && (
+                  <div className="cv-snapshot__chips cv-snapshot__chips--tight">
+                    {l.stack.map((s) => (
+                      <span key={s} className="cv-snapshot__chip">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </li>
             ))}
           </ul>
         </article>
-
       </div>
     </section>
   )
