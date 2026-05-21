@@ -5,6 +5,8 @@ import neuralSpellbookTraining from '../assets/images/neuralspellbook-training.p
 import studyquestCover from '../assets/images/studyquest-cover.png'
 import studyquestOnboarding from '../assets/images/studyquest-onboarding.png'
 import studyquestMascot from '../assets/images/studyquest-mascot.png'
+import storyTraceHome from '../assets/images/storytrace/storytrace-home.png'
+import storyTraceExplore from '../assets/images/storytrace/storytrace-explore.png'
 
 const bySlug = Object.fromEntries(projects.map((project) => [project.slug, project]))
 
@@ -744,6 +746,141 @@ const projectCaseStudies = [
       'Study-group matchmaking inside The Commons, scored by rank tier and course overlap.',
       'Teacher dashboards that surface aggregate engagement without exposing individual student data.',
       'Multi-university expansion with cross-campus leaderboards and federated course pools.',
+    ],
+  }),
+  buildCaseStudy({
+    slug: 'storytrace',
+    decorative: 'neural-grid',
+    githubUrl: 'https://github.com/deathnote21306/storytrace',
+    demoUrl: 'https://storytrace-web.onrender.com/',
+    heroParagraph:
+      'StoryTrace is a narrative-intelligence product that treats journalism like version control. A user submits a topic or article URL, then the system traces related coverage, extracts the core narrative DNA, scores how far each version drifts from the source, and presents the result as an explorable news-history interface. The project combines a Next.js product surface with a FastAPI and LangGraph backend so story discovery, comparison, translation, scoring, and persistence stay separated into clear agent responsibilities.',
+    metrics: [
+      { label: 'Pipeline', value: '7 agent stages' },
+      { label: 'Input Modes', value: 'URL + voice/topic' },
+      { label: 'Output', value: 'Drift map + story list' },
+      { label: 'Deployment', value: 'Render live demo' },
+    ],
+    problem: {
+      statement:
+        'A single headline rarely shows how a story changed before it reached the reader. Facts can be omitted, reframed, translated, or amplified across outlets without a clear way to compare the chain.',
+      audience:
+        'Journalists, media researchers, analysts, students, and readers who want to inspect narrative movement instead of trusting one isolated article.',
+      impact:
+        'By making narrative drift visible, StoryTrace gives users a faster way to compare coverage, detect framing shifts, and understand how stories mutate across borders.',
+    },
+    features: [
+      {
+        title: 'Narrative Trace Input',
+        bullets: [
+          'Accepts a topic or article URL from the landing screen',
+          'Includes voice-assisted topic capture',
+          'Starts an async backend job and routes users to the story result',
+        ],
+      },
+      {
+        title: 'Agent-Based Analysis Pipeline',
+        bullets: [
+          'Finds related news coverage through search and feed sources',
+          'Extracts actors, claims, facts, and framing signals',
+          'Scores semantic drift between the root story and outlet versions',
+        ],
+      },
+      {
+        title: 'Exploration Interface',
+        bullets: [
+          'Recent-stories view for returning to completed traces',
+          'Dashboard-ready visuals for comparing narrative versions',
+          'Structured story state stored for retrieval and future analysis',
+        ],
+      },
+    ],
+    architecture: [
+      {
+        label: 'Next.js Frontend',
+        detail:
+          'React and TypeScript interface for topic submission, voice input, recent-story browsing, and future visualization panels.',
+      },
+      {
+        label: 'FastAPI Service',
+        detail:
+          'Accepts analysis requests, creates background jobs, exposes story polling endpoints, and returns health/recent-story data.',
+      },
+      {
+        label: 'LangGraph Agents',
+        detail:
+          'Coordinates specialized agents for seed discovery, crawling, translation, DNA extraction, drift scoring, geo-building, and alerts.',
+      },
+      {
+        label: 'PostgreSQL Storage',
+        detail:
+          'Persists story jobs, outlet versions, drift history, and completed trace data for dashboard retrieval.',
+      },
+    ],
+    architectureFlow: [
+      'User enters URL or topic',
+      'Frontend posts to FastAPI /analyze',
+      'Background job launches LangGraph pipeline',
+      'Agents collect and normalize related coverage',
+      'Narrative DNA and drift scores are computed',
+      'Results persist to PostgreSQL',
+      'Dashboard renders trace and recent-story views',
+    ],
+    implementation: {
+      backend: [
+        'FastAPI exposes /analyze, /story/{job_id}, /story/recent, /forecast/{job_id}, and /health endpoints with explicit response models.',
+        'The pipeline is run as a background task so the UI can receive a job id immediately while longer analysis continues server-side.',
+      ],
+      frontend: [
+        'Next.js app uses a dark intelligence-dashboard interface with a central trace form, recent-story browser, and reusable visual components.',
+        'VoiceInput appends transcript text directly into the trace field, keeping voice capture lightweight and product-oriented.',
+      ],
+      ai: [
+        'LangGraph separates the workflow into purpose-built agents instead of forcing one model call to own discovery, extraction, scoring, and persistence.',
+        'spaCy and language detection reduce unnecessary model work before higher-cost AI services handle extraction, translation, or forecasting.',
+      ],
+      optimization: [
+        'Background processing avoids blocking the request cycle while keeping each story trace addressable by job id.',
+        'Local NLP filters and structured JSON outputs keep the agent pipeline more debuggable and cost-aware.',
+      ],
+    },
+    challenges: [
+      {
+        challenge:
+          'News comparison is messy because related stories may use different titles, countries, languages, and levels of detail.',
+        solution:
+          'The system breaks the problem into stages: source discovery, article collection, language handling, narrative extraction, then drift scoring.',
+      },
+      {
+        challenge:
+          'A long-running analysis job can feel broken if the browser waits synchronously for every agent to finish.',
+        solution:
+          'FastAPI returns a job id immediately and lets the frontend poll or navigate to the result route while the pipeline completes in the background.',
+      },
+    ],
+    resultVisuals: [
+      {
+        title: 'Trace Entry Screen',
+        caption:
+          'Live demo landing page where users paste a story URL, type a topic, or use voice input to start a narrative trace.',
+        image: storyTraceHome,
+      },
+      {
+        title: 'Recent Stories',
+        caption:
+          'Deployed browse view showing completed traces and the story metadata returned by the backend.',
+        image: storyTraceExplore,
+      },
+    ],
+    resultNotes: [
+      'Live Render deployment is available for the frontend experience.',
+      'The backend is organized around production-shaped API routes, background jobs, and testable agent modules.',
+      'The product direction is clear: make narrative mutation inspectable instead of invisible.',
+    ],
+    future: [
+      'Add richer interactive story-tree visualizations for comparing every outlet version against the root story.',
+      'Improve source confidence scoring and make provenance more visible inside the UI.',
+      'Expand alerting so high-drift stories can trigger webhooks or newsroom monitoring workflows.',
     ],
   }),
 ].filter(Boolean)

@@ -6,6 +6,7 @@ import robotDesignCover from '../assets/images/robot-design-cover.png'
 import linearRegressionCover from '../assets/images/linear-regression-illustration.svg'
 import n8nLogo from '../assets/images/n8n-logo.svg'
 import studyquestCover from '../assets/images/studyquest-cover.png'
+import storyTraceCover from '../assets/images/storytrace-banner.svg'
 
 const projects = [
   {
@@ -66,6 +67,15 @@ const projects = [
     description: 'Built an AI voice assistant for appointment booking by integrating an LLM API with n8n workflows, achieving around 90% task completion and 4th place out of about 40 teams.',
     stack: ['LLM API', 'n8n', 'Automation', 'Hackathon'],
     coverImage: n8nLogo,
+  },
+  {
+    id: 7,
+    slug: 'storytrace',
+    title: 'StoryTrace',
+    description:
+      'A Git-for-news platform that traces how stories mutate across outlets and countries, then visualizes narrative drift through AI agents, maps, and comparison dashboards.',
+    stack: ['Next.js', 'FastAPI', 'LangGraph', 'D3.js'],
+    coverImage: storyTraceCover,
   },
 ]
 
